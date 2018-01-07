@@ -1,11 +1,11 @@
 package com.github.spb.tget.tests;
 
+import com.github.spb.tget.data.ListItemInfo;
 import com.github.spb.tget.managers.ListDetailsManager;
 import com.github.spb.tget.managers.ListManager;
 
+import com.github.spb.tget.utils.RandomUtils;
 import org.testng.annotations.Test;
-
-import static org.apache.commons.lang.RandomStringUtils.randomAlphanumeric;
 
 public class ListTest extends BaseTest {
 
@@ -19,9 +19,17 @@ public class ListTest extends BaseTest {
 
     @Test
     public void addingNewListShouldOpenListDetailsPage() {
-        String listTitle = randomAlphanumeric(15);
+        String listTitle = RandomUtils.getRandomAlphanumeric(20);
         listManager.createNewList(listTitle);
         listDetailsManager.verifyListDetailsPageOpened(listTitle);
-        listDetailsManager.verifyTotalAmount("Total: 0");
+    }
+
+    @Test
+    public void canAddItemToTheListWithCorrectProperties() {
+        listManager.createNewList(RandomUtils.getRandomAlphanumeric(20));
+
+        ListItemInfo expectedListItem = RandomUtils.getRandomListItemInfo();
+        listDetailsManager.addNewItemToTheList(expectedListItem);
+        listDetailsManager.verifyItemExistsInTheList(expectedListItem);
     }
 }
