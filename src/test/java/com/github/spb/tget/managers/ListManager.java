@@ -12,7 +12,8 @@ public class ListManager {
         page = new BuyListPage(driver);
     }
 
-    public void enterNewListName(String name) {
-        page.enterText(name);
+    public void createNewList(String name) {
+        page.enterTextToNewListTitleField(name)
+                .pressAddNewListButton();
     }
 }

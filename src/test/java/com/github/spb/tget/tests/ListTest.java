@@ -16,6 +16,6 @@ public class ListTest extends BaseTest {
 
     @Test
     public void draftTest() {
-        listManager.enterNewListName(randomAlphanumeric(15));
+        listManager.createNewList(randomAlphanumeric(15));
     }
 }
