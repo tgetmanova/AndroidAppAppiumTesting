@@ -19,7 +19,7 @@ public class ListTest extends BaseTest {
         listDetailsManager = new ListDetailsManager(getDriver());
     }
 
-    @Test
+    @Test(description = "After new list creation, should be redirected to list details page")
     public void addingNewListShouldOpenListDetailsPage() {
         String listTitle = RandomUtils.getRandomAlphanumeric(20);
         listManager.createNewList(listTitle);

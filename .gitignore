@@ -35,3 +35,4 @@ buildNumber.properties
 .DS_Store
 
 .allure
+allure-results

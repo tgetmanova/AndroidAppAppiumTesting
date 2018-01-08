@@ -1,7 +1,7 @@
 package com.github.spb.tget.utils;
 
 import com.github.spb.tget.data.ListItemInfo;
-import org.apache.commons.lang.RandomStringUtils;
+import org.apache.commons.lang3.RandomStringUtils;
 
 import java.util.Random;
 
