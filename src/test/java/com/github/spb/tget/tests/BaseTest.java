@@ -4,21 +4,24 @@ import com.github.spb.tget.utils.DriverUtils;
 
 import io.appium.java_client.android.AndroidDriver;
 
-import org.testng.annotations.AfterTest;
+import org.testng.annotations.AfterMethod;
 
 public class BaseTest {
 
     private AndroidDriver driver;
 
     public BaseTest() {
-        driver = DriverUtils.getDriver();
+        driver = DriverUtils.createAndroidDriver();
     }
 
     protected AndroidDriver getDriver() {
-        return this.driver;
+        if (driver == null || driver.getSessionId() == null) {
+            driver = DriverUtils.createAndroidDriver();
+        }
+        return driver;
     }
 
-    @AfterTest
+    @AfterMethod
     public void cleanup() {
         if (this.driver != null) {
             this.driver.quit();

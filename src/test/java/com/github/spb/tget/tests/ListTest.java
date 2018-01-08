@@ -5,6 +5,7 @@ import com.github.spb.tget.managers.ListDetailsManager;
 import com.github.spb.tget.managers.ListManager;
 
 import com.github.spb.tget.utils.RandomUtils;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class ListTest extends BaseTest {
@@ -12,7 +13,8 @@ public class ListTest extends BaseTest {
     private ListManager listManager;
     private ListDetailsManager listDetailsManager;
 
-    public ListTest() {
+    @BeforeMethod
+    public void listTestsInitialize() {
         listManager = new ListManager(getDriver());
         listDetailsManager = new ListDetailsManager(getDriver());
     }

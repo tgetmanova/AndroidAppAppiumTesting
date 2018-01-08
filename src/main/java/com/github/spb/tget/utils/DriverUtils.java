@@ -12,7 +12,7 @@ import java.util.Properties;
 
 public class DriverUtils {
 
-    public static AndroidDriver getDriver() {
+    public static AndroidDriver createAndroidDriver() {
         Properties properties = DataContextUtils.getAppProperties();
         File app = new File(DriverUtils.class.getClassLoader().getResource(
                 properties.getProperty("appRelativeLocationUnderResources")).getPath(),
