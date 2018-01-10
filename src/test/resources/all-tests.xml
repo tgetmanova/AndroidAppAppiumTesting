@@ -1,0 +1,12 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="General Buy List Tests">
+    <test name="Create Buy List Tests">
+        <classes>
+            <class name="com.github.spb.tget.tests.ListTest"/>
+        </classes>
+    </test>
+    <test name="EditBuyListTests">
+    </test>
+</suite>

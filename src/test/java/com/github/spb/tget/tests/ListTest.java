@@ -3,11 +3,16 @@ package com.github.spb.tget.tests;
 import com.github.spb.tget.data.ListItemInfo;
 import com.github.spb.tget.managers.ListDetailsManager;
 import com.github.spb.tget.managers.ListManager;
-
 import com.github.spb.tget.utils.RandomUtils;
+
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
+
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+@Feature("Main Buy List page")
+@Story("Creating list items from Main Buy List page")
 public class ListTest extends BaseTest {
 
     private ListManager listManager;
@@ -26,7 +31,7 @@ public class ListTest extends BaseTest {
         listDetailsManager.verifyListDetailsPageOpened(listTitle);
     }
 
-    @Test
+    @Test(description = "New item's details should be saved correctly in the list")
     public void canAddItemToTheListWithCorrectProperties() {
         listManager.createNewList(RandomUtils.getRandomAlphanumeric(20));
 
