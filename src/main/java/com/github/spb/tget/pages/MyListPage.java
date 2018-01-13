@@ -6,7 +6,7 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 
 import io.qameta.allure.Step;
 
-public class BuyListPage extends PageElements {
+public class MyListPage extends PageElements {
 
     @AndroidFindBy(id = "com.slava.buylist:id/button1")
     private MobileElement menuButton;
@@ -17,12 +17,12 @@ public class BuyListPage extends PageElements {
     @AndroidFindBy(id = "com.slava.buylist:id/button2")
     private MobileElement addNewListButton;
 
-    public BuyListPage(AppiumDriver driver) {
+    public MyListPage(AppiumDriver driver) {
         super(driver);
     }
 
     @Step("Submitting new list title to the text field")
-    public BuyListPage enterTextToNewListTitleField(String text) {
+    public MyListPage enterTextToNewListTitleField(String text) {
         newListTitleTextField.setValue(text);
         return this;
     }
@@ -33,7 +33,7 @@ public class BuyListPage extends PageElements {
     }
 
     @Step("Expanding top menu items")
-    public void clickMenuButton() {
+    public void clickMenuButton(){
         menuButton.click();
     }
 }

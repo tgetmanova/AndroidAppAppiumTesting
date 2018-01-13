@@ -2,13 +2,13 @@ package com.github.spb.tget.managers;
 
 import com.github.spb.tget.pages.BuyListPage;
 
-import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.AppiumDriver;
 
 public class ListManager {
 
     private BuyListPage page;
 
-    public ListManager(AndroidDriver driver) {
+    public ListManager(AppiumDriver driver) {
         page = new BuyListPage(driver);
     }
 

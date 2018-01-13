@@ -1,8 +1,10 @@
 package com.github.spb.tget.tests;
 
 import com.github.spb.tget.data.ListItemInfo;
+import com.github.spb.tget.managers.CurrencyManager;
 import com.github.spb.tget.managers.ListDetailsManager;
 import com.github.spb.tget.managers.ListManager;
+import com.github.spb.tget.managers.MenuManager;
 import com.github.spb.tget.utils.RandomUtils;
 
 import io.qameta.allure.Feature;
@@ -17,11 +19,15 @@ public class ListTest extends BaseTest {
 
     private ListManager listManager;
     private ListDetailsManager listDetailsManager;
+    private CurrencyManager currencyManager;
+    private MenuManager menuManager;
 
     @BeforeMethod
     public void listTestsInitialize() {
         listManager = new ListManager(getDriver());
         listDetailsManager = new ListDetailsManager(getDriver());
+        currencyManager = new CurrencyManager(getDriver());
+        menuManager = new MenuManager(getDriver());
     }
 
     @Test(description = "After new list creation, should be redirected to list details page")
@@ -38,5 +44,9 @@ public class ListTest extends BaseTest {
         ListItemInfo expectedListItem = RandomUtils.getRandomListItemInfo();
         listDetailsManager.addNewItemToTheList(expectedListItem);
         listDetailsManager.verifyItemExistsInTheList(expectedListItem);
+    }
+
+    @Test
+    public void canAddItemToTheListFromMyList() {
     }
 }

@@ -10,8 +10,8 @@ public class RandomUtils {
 
     private static Random random = new Random(System.currentTimeMillis() * 10000 + TICKS_AT_EPOCH);
 
-    private static double getRandomDouble() {
-        return random.nextDouble();
+    private static double getRandomDouble(double min, double max) {
+        return (double) Math.round((min + (max - min) * random.nextDouble()) * 100000d) / 100000d;
     }
 
     public static String getRandomAlphanumeric(int charsCount) {
@@ -21,9 +21,9 @@ public class RandomUtils {
     public static ListItemInfo getRandomListItemInfo() {
         ListItemInfo listItemInfo = new ListItemInfo()
                 .withName(RandomStringUtils.randomAlphanumeric(25))
-                .withPrice(getRandomDouble())
-                .withAmount(getRandomDouble())
-                .withComment(RandomStringUtils.randomAlphanumeric(42));
+                .withPrice(getRandomDouble(1, 10000))
+                .withAmount(getRandomDouble(1, 100))
+                .withComment(RandomStringUtils.randomAlphanumeric(25));
 
         return listItemInfo;
     }

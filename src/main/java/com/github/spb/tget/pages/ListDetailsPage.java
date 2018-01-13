@@ -1,12 +1,12 @@
 package com.github.spb.tget.pages;
 
+import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
-import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 
 import java.util.List;
 
-public class ListDetailsPage extends Page {
+public class ListDetailsPage extends PageElements {
 
     private String listDetailsHeaderXPathTemplate = "//android.widget.TextView[@text='%s']";
 
@@ -29,21 +29,41 @@ public class ListDetailsPage extends Page {
     private MobileElement addItemButton;
 
     private String itemNameLabelXPathTemplate = "//android.widget.TextView[@text='%s']";
-    private String itemPriceLabelXPathTemplate = "//android.widget.TextView[@text='%s']";
-    private String itemAmountLabelXPathTemplate = "//android.widget.TextView[@text='%s']";
+    private String itemPriceLabelXPathTemplate = "//android.widget.TextView[@text = '%s %s')]";
+    private String itemAmountLabelXPathTemplate = "//android.widget.TextView[@text = '%s %s')]";
     private String itemCommentLabelXPathTemplate = "//android.widget.TextView[@text='%s']";
 
-    public ListDetailsPage(AndroidDriver driver) {
+    public ListDetailsPage(AppiumDriver driver) {
         super(driver);
     }
 
     public boolean isAt(String listTitle) {
-        List<MobileElement> elements = driver.findElementsByXPath(String.format(listDetailsHeaderXPathTemplate, listTitle));
+        List elements = driver.findElementsByXPath(
+                String.format(listDetailsHeaderXPathTemplate, listTitle));
         return elements.size() == 1;
     }
 
     public boolean hasItemWithName(String name) {
-        List<MobileElement> elements = driver.findElementsByXPath(String.format(itemNameLabelXPathTemplate, name));
+        List elements = driver.findElementsByXPath(
+                String.format(itemNameLabelXPathTemplate, name));
+        return elements.size() == 1;
+    }
+
+    public boolean hasItemWithComment(String comment) {
+        List elements = driver.findElementsByXPath(
+                String.format(itemCommentLabelXPathTemplate, comment));
+        return elements.size() == 1;
+    }
+
+    public boolean hasItemWithAmount(String amount, String units) {
+        List elements = driver.findElementsByXPath(
+                String.format(itemAmountLabelXPathTemplate, amount, units));
+        return elements.size() == 1;
+    }
+
+    public boolean hasItemWithPrice(String price, String units) {
+        List elements = driver.findElementsByXPath(
+                String.format(itemPriceLabelXPathTemplate, price, units));
         return elements.size() == 1;
     }
 
