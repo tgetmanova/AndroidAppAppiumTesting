@@ -31,8 +31,8 @@ public class ListDetailsPage extends PageElements {
     private MobileElement addItemButton;
 
     private String itemNameLabelXPathTemplate = "//android.widget.TextView[@text='%s']";
-    private String itemPriceLabelXPathTemplate = "//android.widget.TextView[@text = '%s %s')]";
-    private String itemAmountLabelXPathTemplate = "//android.widget.TextView[@text = '%s %s')]";
+    private String itemPriceLabelXPathTemplate = "//android.widget.TextView[@text = '%s %s']";
+    private String itemAmountLabelXPathTemplate = "//android.widget.TextView[@text = '%s %s']";
     private String itemCommentLabelXPathTemplate = "//android.widget.TextView[@text='%s']";
 
     public ListDetailsPage(AppiumDriver driver) {

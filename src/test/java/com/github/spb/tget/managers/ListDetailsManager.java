@@ -5,6 +5,7 @@ import com.github.spb.tget.pages.ListDetailsPage;
 
 import io.appium.java_client.AppiumDriver;
 
+import org.assertj.core.api.SoftAssertions;
 import org.testng.Assert;
 
 public class ListDetailsManager {
@@ -30,22 +31,24 @@ public class ListDetailsManager {
     }
 
     public void verifyItemExistsInTheList(ListItemInfo listItemInfo) {
-        Assert.assertTrue(page.hasItemWithName(listItemInfo.getName()),
-                "After adding new item to the list, cannot find buy list item with name: "
-                        + listItemInfo.getName());
-        Assert.assertTrue(page.hasItemWithComment(listItemInfo.getComment()),
-                "After adding new item to the list, cannot find buy list item with comment: "
-                        + listItemInfo.getComment());
-        Assert.assertTrue(page.hasItemWithAmount(String.valueOf(listItemInfo.getAmount()), "pcs."),
-                "After adding new item to the list, cannot find buy list item with amount: "
-                        + listItemInfo.getAmount());
-        Assert.assertTrue(page.hasItemWithPrice(String.valueOf(listItemInfo.getPrice()), "£"),
-                "After adding new item to the list, cannot find buy list item with price: "
-                        + listItemInfo.getPrice());
-    }
+        SoftAssertions assertion = new SoftAssertions();
+        assertion.assertThat(page.hasItemWithName(listItemInfo.getName()))
+                .as("After adding new item to the list, cannot find buy list item with name: "
+                        + listItemInfo.getName())
+                .isTrue();
+        assertion.assertThat(page.hasItemWithComment(listItemInfo.getComment()))
+                .as("After adding new item to the list, cannot find buy list item with comment: "
+                        + listItemInfo.getComment())
+                .isTrue();
+        assertion.assertThat(page.hasItemWithAmount(String.valueOf(listItemInfo.getAmount()), "pcs."))
+                .as("After adding new item to the list, cannot find buy list item with amount: "
+                        + listItemInfo.getAmount())
+                .isTrue();
+        assertion.assertThat(page.hasItemWithPrice(String.valueOf(listItemInfo.getPrice()), "£"))
+                .as("After adding new item to the list, cannot find buy list item with price: "
+                        + listItemInfo.getPrice())
+                .isTrue();
 
-    public void verifyTotalAmount(String expectedAmount) {
-        Assert.assertTrue(page.getTotalAmountText().contains(expectedAmount),
-                "Incorrect total amount for list details is retrieved");
+        assertion.assertAll();
     }
 }
