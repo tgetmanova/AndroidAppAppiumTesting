@@ -1,6 +1,6 @@
 package com.github.spb.tget.tests;
 
-import com.github.spb.tget.utils.DriverUtils;
+import com.github.spb.tget.utils.AppiumDriverFactory;
 
 import io.appium.java_client.AppiumDriver;
 
@@ -11,12 +11,12 @@ public class BaseTest {
     private AppiumDriver driver;
 
     public BaseTest() {
-        driver = DriverUtils.createAndroidDriver();
+        driver = AppiumDriverFactory.getDriver();
     }
 
     protected AppiumDriver getDriver() {
         if (driver == null || driver.getSessionId() == null) {
-            driver = DriverUtils.createAndroidDriver();
+            driver = AppiumDriverFactory.getDriver();
         }
         return driver;
     }

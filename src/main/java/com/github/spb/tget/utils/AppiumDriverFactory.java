@@ -1,20 +1,40 @@
 package com.github.spb.tget.utils;
 
+import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.AndroidMobileCapabilityType;
 
 import org.openqa.selenium.remote.DesiredCapabilities;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.FileSystemXmlApplicationContext;
 
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Properties;
 
-public class DriverUtils {
+public class AppiumDriverFactory {
 
-    public static AndroidDriver createAndroidDriver() {
+    public static AppiumDriver getDriver() {
+        ApplicationContext applicationContext = new FileSystemXmlApplicationContext(
+                AppiumDriverFactory.class.getClassLoader().getResource("test-execution-context.xml").getPath());
+
+        return (AppiumDriver) applicationContext.getBean("driver");
+    }
+
+    private static AppiumDriver getDriverByType(String type) {
+        switch (type) {
+            case "Android":
+                return getAndroidDriver();
+            default:
+                throw new IllegalArgumentException("Invalid Appium Driver type: " + type);
+        }
+    }
+
+    private static AndroidDriver getAndroidDriver() {
         Properties properties = DataContextUtils.getAppProperties();
-        File app = new File(DriverUtils.class.getClassLoader().getResource(
+        File app = new File(AppiumDriverFactory.class.getClassLoader().getResource(
                 properties.getProperty("appRelativeLocationUnderResources")).getPath(),
                 properties.getProperty("appName"));
 
