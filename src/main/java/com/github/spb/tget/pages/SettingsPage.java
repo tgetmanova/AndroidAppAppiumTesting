@@ -4,6 +4,8 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 
+import io.qameta.allure.Step;
+
 public class SettingsPage extends PageElements {
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Currency']")
@@ -13,6 +15,7 @@ public class SettingsPage extends PageElements {
         super(driver);
     }
 
+    @Step("Opening 'Currency selection' popup from 'Settings'")
     public void openCurrencySettingsPopup() {
         currencySettingsItem.click();
     }

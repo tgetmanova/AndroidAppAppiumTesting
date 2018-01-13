@@ -6,6 +6,8 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 
+import io.qameta.allure.Step;
+
 import java.util.List;
 
 public class CurrencyDialog extends PageElements {
@@ -17,6 +19,7 @@ public class CurrencyDialog extends PageElements {
         super(driver);
     }
 
+    @Step("Checking what currency is currently selected")
     public String getCheckedCurrencyItem() {
         return currencyItems.stream()
                 .filter(i -> i.getAttribute("checked").equals("true"))
