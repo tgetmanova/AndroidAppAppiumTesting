@@ -7,8 +7,6 @@ import com.github.spb.tget.managers.ListManager;
 import com.github.spb.tget.managers.MenuManager;
 import com.github.spb.tget.utils.RandomUtils;
 
-import io.appium.java_client.AppiumDriver;
-
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
 
@@ -25,12 +23,11 @@ public class ListTest extends BaseTest {
     private MenuManager menuManager;
 
     @BeforeMethod
-    public void listTestsInitialize() {
-       // AppiumDriver driver = getDriver();
-        listManager = new ListManager(getDriver());
-        listDetailsManager = new ListDetailsManager(getDriver());
-        currencyManager = new CurrencyManager(getDriver());
-        menuManager = new MenuManager(getDriver());
+    public void listTestInitialize() {
+        listManager = new ListManager(driver);
+        listDetailsManager = new ListDetailsManager(driver);
+        currencyManager = new CurrencyManager(driver);
+        menuManager = new MenuManager(driver);
     }
 
     @Test(description = "After new list creation, should be redirected to list details page")

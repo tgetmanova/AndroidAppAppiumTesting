@@ -5,12 +5,14 @@ import com.github.spb.tget.utils.AppiumDriverFactory;
 import io.appium.java_client.AppiumDriver;
 
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 
 public class BaseTest {
 
-    private AppiumDriver driver;
+    protected AppiumDriver driver;
 
-    public BaseTest() {
+    @BeforeMethod
+    public void init() {
         driver = AppiumDriverFactory.getDriver();
     }
 

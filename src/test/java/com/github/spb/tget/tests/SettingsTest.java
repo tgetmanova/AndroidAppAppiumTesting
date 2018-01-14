@@ -7,11 +7,10 @@ import com.github.spb.tget.managers.ListManager;
 import com.github.spb.tget.managers.MenuManager;
 import com.github.spb.tget.utils.RandomUtils;
 
-import io.appium.java_client.AppiumDriver;
-
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
 
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 @Feature("Settings menu of Buy List")
@@ -23,8 +22,8 @@ public class SettingsTest extends BaseTest {
     private ListManager listManager;
     private ListDetailsManager listDetailsManager;
 
-    public SettingsTest() {
-        AppiumDriver driver = getDriver();
+    @BeforeMethod
+    public void settingsTestInitialize() {
         menuManager = new MenuManager(driver);
         currencyManager = new CurrencyManager(driver);
         listManager = new ListManager(driver);
