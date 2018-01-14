@@ -14,7 +14,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 @Feature("Main Buy List page")
-@Story("Creating list items from Main Buy List page")
+@Story("Can create list items from Main Buy List page")
 public class ListTest extends BaseTest {
 
     private ListManager listManager;

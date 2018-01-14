@@ -1,5 +1,8 @@
 package com.github.spb.tget.utils;
 
+import com.github.spb.tget.pages.keyevents.AndroidKeyEvent;
+import com.github.spb.tget.pages.keyevents.KeyEvent;
+
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.AndroidMobileCapabilityType;
@@ -23,12 +26,12 @@ public class AppiumDriverFactory {
         return (AppiumDriver) applicationContext.getBean("driver");
     }
 
-    public static AppiumDriver getDriverByType(String type) {
-        switch (type) {
+    public static AppiumDriver getDriverByType(String driverType) {
+        switch (driverType) {
             case "Android":
                 return getAndroidDriver();
             default:
-                throw new IllegalArgumentException("Invalid Appium Driver type: " + type);
+                throw new IllegalArgumentException("Invalid Appium Driver type: " + driverType);
         }
     }
 
@@ -53,5 +56,12 @@ public class AppiumDriverFactory {
         }
 
         return new AndroidDriver(url, capabilities);
+    }
+
+    public static KeyEvent getKeyEventByDriverType(AppiumDriver driver) {
+        if (driver instanceof AndroidDriver) {
+            return new AndroidKeyEvent(driver);
+        }
+        throw new IllegalArgumentException("Invalid Appium Driver type");
     }
 }

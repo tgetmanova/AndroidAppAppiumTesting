@@ -9,4 +9,9 @@
     </test>
     <test name="EditBuyListTests">
     </test>
+    <test name="Manage Settings for Buy List">
+        <classes>
+            <class name="com.github.spb.tget.tests.SettingsTest"/>
+        </classes>
+    </test>
 </suite>
