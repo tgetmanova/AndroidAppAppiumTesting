@@ -3,6 +3,7 @@ package com.github.spb.tget.utils;
 import com.github.spb.tget.data.ListItemInfo;
 import org.apache.commons.lang3.RandomStringUtils;
 
+import java.util.Collection;
 import java.util.Random;
 
 public class RandomUtils {
@@ -16,6 +17,11 @@ public class RandomUtils {
 
     public static String getRandomAlphanumeric(int charsCount) {
         return RandomStringUtils.randomAlphanumeric(charsCount);
+    }
+
+    public static Object getRandomElement(Collection collection) {
+        int i = random.nextInt(collection.size());
+        return collection.toArray()[i];
     }
 
     public static ListItemInfo getRandomListItemInfo() {

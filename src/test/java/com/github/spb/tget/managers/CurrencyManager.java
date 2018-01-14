@@ -26,4 +26,10 @@ public class CurrencyManager {
         keyEvent.pressBackSeveralTimes(2);
         return currency;
     }
+
+    public void setCurrency(Currency currency){
+        settingsPage.openCurrencySettingsPopup();
+        currencyDialog.selectCurrency(currency.getCurrencySymbol());
+        keyEvent.pressBackSeveralTimes(1);
+    }
 }

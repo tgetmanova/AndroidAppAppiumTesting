@@ -12,9 +12,6 @@ public class ListDetailsPage extends PageElements {
 
     private String listDetailsHeaderXPathTemplate = "//android.widget.TextView[@text='%s']";
 
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Total: 0 £')]")
-    private MobileElement totalAmountLabel;
-
     @AndroidFindBy(id = "com.slava.buylist:id/editText1")
     private MobileElement newItemNameTextField;
 
@@ -29,6 +26,9 @@ public class ListDetailsPage extends PageElements {
 
     @AndroidFindBy(id = "com.slava.buylist:id/button2")
     private MobileElement addItemButton;
+
+    private String newItemCurrencySymbolXPathTemplate
+            = "//android.widget.TextView[@resource-id='com.slava.buylist:id/value' and @text='%s']";
 
     private String itemNameLabelXPathTemplate = "//android.widget.TextView[@text='%s']";
     private String itemPriceLabelXPathTemplate = "//android.widget.TextView[@text = '%s %s']";
@@ -102,7 +102,9 @@ public class ListDetailsPage extends PageElements {
         addItemButton.click();
     }
 
-    public String getTotalAmountText() {
-        return totalAmountLabel.getText();
+    @Step("Checking whether expected currency symbol {0} is displayed on List Details page")
+    public boolean isExpectedCurrencySymbolDisplayed(String currencySymbol) {
+        return driver.findElementsByXPath(
+                String.format(newItemCurrencySymbolXPathTemplate, currencySymbol)).size() == 1;
     }
 }

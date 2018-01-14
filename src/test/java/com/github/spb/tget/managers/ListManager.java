@@ -6,14 +6,14 @@ import io.appium.java_client.AppiumDriver;
 
 public class ListManager {
 
-    private BuyListPage page;
+    private BuyListPage buyListPage;
 
     public ListManager(AppiumDriver driver) {
-        page = new BuyListPage(driver);
+        buyListPage = new BuyListPage(driver);
     }
 
-    public void createNewList(String name) {
-        page.enterTextToNewListTitleField(name)
+    public void createNewListFromBuyListPage(String name) {
+        buyListPage.enterTextToNewListTitleField(name)
                 .pressAddNewListButton();
     }
 }

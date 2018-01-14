@@ -15,7 +15,7 @@ public class AndroidKeyEvent extends PageElements implements KeyEvent {
     }
 
     @Override
-    @Step("Pressing back device button")
+    @Step("Pressing 'Back' device button")
     public void pressBack() {
         ((AndroidDriver) driver).pressKeyCode(AndroidKeyCode.BACK);
     }
@@ -29,11 +29,13 @@ public class AndroidKeyEvent extends PageElements implements KeyEvent {
     }
 
     @Override
+    @Step("Pressing 'Home' device button")
     public void pressHome() {
 
     }
 
     @Override
+    @Step("Collapsing device virtual keyboard")
     public void collapseKeyboard() {
 
     }

@@ -7,6 +7,8 @@ import com.github.spb.tget.managers.ListManager;
 import com.github.spb.tget.managers.MenuManager;
 import com.github.spb.tget.utils.RandomUtils;
 
+import io.appium.java_client.AppiumDriver;
+
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
 
@@ -24,6 +26,7 @@ public class ListTest extends BaseTest {
 
     @BeforeMethod
     public void listTestsInitialize() {
+       // AppiumDriver driver = getDriver();
         listManager = new ListManager(getDriver());
         listDetailsManager = new ListDetailsManager(getDriver());
         currencyManager = new CurrencyManager(getDriver());
@@ -33,13 +36,13 @@ public class ListTest extends BaseTest {
     @Test(description = "After new list creation, should be redirected to list details page")
     public void addingNewListShouldOpenListDetailsPage() {
         String listTitle = RandomUtils.getRandomAlphanumeric(20);
-        listManager.createNewList(listTitle);
+        listManager.createNewListFromBuyListPage(listTitle);
         listDetailsManager.verifyListDetailsPageOpened(listTitle);
     }
 
     @Test(description = "New item's details should be saved correctly in the list")
     public void canAddItemToTheListWithCorrectProperties() {
-        listManager.createNewList(RandomUtils.getRandomAlphanumeric(20));
+        listManager.createNewListFromBuyListPage(RandomUtils.getRandomAlphanumeric(20));
 
         ListItemInfo expectedListItem = RandomUtils.getRandomListItemInfo();
         listDetailsManager.addNewItemToTheList(expectedListItem);

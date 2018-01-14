@@ -25,4 +25,17 @@ public class CurrencyDialog extends PageElements {
                 .filter(i -> i.getAttribute("checked").equals("true"))
                 .findFirst().get().getText();
     }
+
+    @Step("Selecting {0} currency in the popup")
+    public void selectCurrency(String currencySymbol) {
+        MobileElement targetCurrencyItem = currencyItems.stream()
+                .filter(i -> i.getText().equals(currencySymbol))
+                .findFirst()
+                .orElseThrow(() -> new RuntimeException("Cannot find given currency: " + currencySymbol));
+        if (targetCurrencyItem.getAttribute("checked").equals("true")) {
+            throw new IllegalStateException(
+                    String.format("Currency %s is already selected to be default", currencySymbol));
+        }
+        targetCurrencyItem.click();
+    }
 }
