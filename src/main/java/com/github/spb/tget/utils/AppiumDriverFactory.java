@@ -23,7 +23,7 @@ public class AppiumDriverFactory {
         return (AppiumDriver) applicationContext.getBean("driver");
     }
 
-    private static AppiumDriver getDriverByType(String type) {
+    public static AppiumDriver getDriverByType(String type) {
         switch (type) {
             case "Android":
                 return getAndroidDriver();
