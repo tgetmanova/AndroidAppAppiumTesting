@@ -12,15 +12,8 @@ public class BaseTest {
     protected AppiumDriver driver;
 
     @BeforeMethod
-    public void init() {
+    public void initializeTest() {
         driver = AppiumDriverFactory.getDriver();
-    }
-
-    protected AppiumDriver getDriver() {
-        if (driver == null || driver.getSessionId() == null) {
-            driver = AppiumDriverFactory.getDriver();
-        }
-        return driver;
     }
 
     @AfterMethod
