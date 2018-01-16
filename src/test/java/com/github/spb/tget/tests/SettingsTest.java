@@ -11,8 +11,10 @@ import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
 
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
+@Listeners(TestListener.class)
 @Feature("Settings menu of Buy List")
 @Story("Can manage settings for Buy List")
 public class SettingsTest extends BaseTest {
