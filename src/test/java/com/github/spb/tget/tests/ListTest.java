@@ -10,10 +10,12 @@ import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
 
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import java.util.Collections;
 
+@Listeners(TestListener.class)
 @Feature("Main Buy List page")
 @Story("Can create list items from Main Buy List page")
 public class ListTest extends BaseTest {
