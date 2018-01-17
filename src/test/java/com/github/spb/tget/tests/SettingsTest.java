@@ -40,7 +40,7 @@ public class SettingsTest extends BaseTest {
         menuManager.openSettingsFromBuyListPage();
         currencyManager.setCurrency(targetCurrency);
 
-        listManager.createNewListFromBuyListPage(RandomUtils.getRandomAlphanumeric(15));
+        listManager.createBuyList(RandomUtils.getRandomAlphanumeric(15));
         listDetailsManager.verifyCurrencyForItemsIsAsExpected(targetCurrency);
     }
 }

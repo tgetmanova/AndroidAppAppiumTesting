@@ -24,4 +24,9 @@ public class MenuManager {
         buyListPage.clickMenuButton();
         menu.selectMyListOption();
     }
+
+    public void openAddFromMyListPageFromBuyListPageMenu() {
+        buyListPage.clickMenuButton();
+        menu.selectAddFromMyListOption();
+    }
 }
