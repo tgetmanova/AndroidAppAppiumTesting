@@ -45,7 +45,7 @@ public class ListTest extends BaseTest {
 
         listDetailsManager.addNewItemToTheList(expectedListItem);
 
-        listDetailsManager.verifyItemExistsInTheList(expectedListItem);
+        listDetailsManager.verifyItemIsDisplayedInTheListWithAllDetails(expectedListItem);
     }
 
     @Test(description = "Can save new item in My List")
@@ -55,7 +55,7 @@ public class ListTest extends BaseTest {
 
         listDetailsManager.addNewItemToTheList(listItemInfo);
 
-        listDetailsManager.verifyItemExistsInTheList(listItemInfo);
+        listDetailsManager.verifyItemIsDisplayedInTheListWithAllDetails(listItemInfo);
     }
 
     @Test
@@ -63,13 +63,13 @@ public class ListTest extends BaseTest {
         menuManager.openMyListPageFromBuyListPageMenu();
         ListItemInfo listItemInfo = RandomUtils.getRandomListItemInfo();
         listDetailsManager.addNewItemToTheList(listItemInfo);
-        listDetailsManager.verifyItemExistsInTheList(listItemInfo);
+        listDetailsManager.verifyItemIsDisplayedInTheListWithAllDetails(listItemInfo);
         listManager.backFromMyListToBuyListDetails();
 
         listManager.createBuyList(RandomUtils.getRandomAlphanumeric(25));
         menuManager.openAddFromMyListPageFromBuyListPageMenu();
         listManager.selectMyListItems(Collections.singletonList(listItemInfo.getName()));
 
-        listDetailsManager.verifyItemExistsInTheList(listItemInfo);
+        listDetailsManager.verifyItemIsDisplayedInTheListWithAllDetails(listItemInfo);
     }
 }

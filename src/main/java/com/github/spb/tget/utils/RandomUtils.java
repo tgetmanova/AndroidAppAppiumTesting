@@ -24,6 +24,10 @@ public class RandomUtils {
         return collection.toArray()[i];
     }
 
+    public static Boolean getRandomBoolean() {
+        return random.nextBoolean();
+    }
+
     public static ListItemInfo getRandomListItemInfo() {
         ListItemInfo listItemInfo = new ListItemInfo()
                 .withName(RandomStringUtils.randomAlphanumeric(25))

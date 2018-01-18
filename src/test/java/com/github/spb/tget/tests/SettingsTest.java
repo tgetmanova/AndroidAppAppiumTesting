@@ -1,7 +1,9 @@
 package com.github.spb.tget.tests;
 
 import com.github.spb.tget.data.Currency;
-import com.github.spb.tget.managers.CurrencyManager;
+import com.github.spb.tget.data.ListItemDisplaySettings;
+import com.github.spb.tget.data.ListItemInfo;
+import com.github.spb.tget.managers.SettingsManager;
 import com.github.spb.tget.managers.ListDetailsManager;
 import com.github.spb.tget.managers.ListManager;
 import com.github.spb.tget.managers.MenuManager;
@@ -20,14 +22,14 @@ import org.testng.annotations.Test;
 public class SettingsTest extends BaseTest {
 
     private MenuManager menuManager;
-    private CurrencyManager currencyManager;
+    private SettingsManager currencyManager;
     private ListManager listManager;
     private ListDetailsManager listDetailsManager;
 
     @BeforeMethod
     public void settingsTestInitialize() {
         menuManager = new MenuManager(driver);
-        currencyManager = new CurrencyManager(driver);
+        currencyManager = new SettingsManager(driver);
         listManager = new ListManager(driver);
         listDetailsManager = new ListDetailsManager(driver);
     }
@@ -42,5 +44,20 @@ public class SettingsTest extends BaseTest {
 
         listManager.createBuyList(RandomUtils.getRandomAlphanumeric(15));
         listDetailsManager.verifyCurrencyForItemsIsAsExpected(targetCurrency);
+    }
+
+    @Test(description = "Can customize list item details view (hide/display)")
+    public void changesInListItemDisplaySettingsShouldBeAppliedToListItems() {
+        ListItemDisplaySettings expectedDisplaySettings = ListItemDisplaySettings.randomListDisplaySettings();
+        menuManager.openSettingsFromBuyListPage();
+        currencyManager.changeListItemDisplaySettings(expectedDisplaySettings);
+        currencyManager.backFromSettingsToBuyList();
+
+        listManager.createBuyList(RandomUtils.getRandomAlphanumeric(20));
+        ListItemInfo listItem = RandomUtils.getRandomListItemInfo();
+        listDetailsManager.addNewItemToTheList(listItem);
+        listDetailsManager.verifyItemIsDisplayedInTheList(listItem.getName());
+
+        listDetailsManager.verifyDisplaySettingsAreAppliedCorrectlyForNewItem(listItem, expectedDisplaySettings);
     }
 }

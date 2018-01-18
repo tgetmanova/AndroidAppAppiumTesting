@@ -1,6 +1,7 @@
 package com.github.spb.tget.managers;
 
 import com.github.spb.tget.data.Currency;
+import com.github.spb.tget.data.ListItemDisplaySettings;
 import com.github.spb.tget.data.ListItemInfo;
 import com.github.spb.tget.pages.ListDetailsPage;
 import com.github.spb.tget.utils.RandomUtils;
@@ -30,7 +31,12 @@ public class ListDetailsManager {
                 .clickAddItemButton();
     }
 
-    public void verifyItemExistsInTheList(ListItemInfo listItemInfo) {
+    public void verifyItemIsDisplayedInTheList(String itemName) {
+        Assert.assertTrue(listDetailsPage.hasItemWithName(itemName),
+                "After adding new item to the list, cannot find buy list item with name: " + itemName);
+    }
+
+    public void verifyItemIsDisplayedInTheListWithAllDetails(ListItemInfo listItemInfo) {
         SoftAssertions assertion = new SoftAssertions();
         assertion.assertThat(listDetailsPage.hasItemWithName(listItemInfo.getName()))
                 .as("After adding new item to the list, cannot find buy list item with name: "
@@ -55,5 +61,19 @@ public class ListDetailsManager {
     public void verifyCurrencyForItemsIsAsExpected(Currency expectedCurrency) {
         listDetailsPage.enterNewItemName(RandomUtils.getRandomAlphanumeric(15));
         listDetailsPage.isExpectedCurrencySymbolDisplayed(expectedCurrency.getCurrencySymbol());
+    }
+
+    public void verifyDisplaySettingsAreAppliedCorrectlyForNewItem(ListItemInfo listItemInfo, ListItemDisplaySettings expectedDisplaySettings) {
+        SoftAssertions assertion = new SoftAssertions();
+        assertion.assertThat(listDetailsPage.hasItemWithAmount(String.valueOf(listItemInfo.getAmount()), "pcs."))
+                .as("Display setting is incorrect for Units")
+                .isEqualTo(expectedDisplaySettings.getDisplayUnits());
+        assertion.assertThat(listDetailsPage.hasItemWithPrice(String.valueOf(listItemInfo.getPrice()), "£"))
+                .as("Display setting is incorrect for Price")
+                .isEqualTo(expectedDisplaySettings.getDisplayPrice());
+        assertion.assertThat(listDetailsPage.hasItemWithComment(listItemInfo.getComment()))
+                .as("Display setting is incorrect for Comment")
+                .isEqualTo(expectedDisplaySettings.getDisplayComment());
+        assertion.assertAll();
     }
 }

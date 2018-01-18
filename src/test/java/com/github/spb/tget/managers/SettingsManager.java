@@ -1,6 +1,7 @@
 package com.github.spb.tget.managers;
 
 import com.github.spb.tget.data.Currency;
+import com.github.spb.tget.data.ListItemDisplaySettings;
 import com.github.spb.tget.pages.SettingsPage;
 import com.github.spb.tget.pages.dialogs.CurrencyDialog;
 import com.github.spb.tget.pages.keyevents.KeyEvent;
@@ -8,28 +9,44 @@ import com.github.spb.tget.utils.AppiumDriverFactory;
 
 import io.appium.java_client.AppiumDriver;
 
-public class CurrencyManager {
+public class SettingsManager {
 
     private SettingsPage settingsPage;
     private CurrencyDialog currencyDialog;
     private KeyEvent keyEvent;
 
-    public CurrencyManager(AppiumDriver driver) {
+    public SettingsManager(AppiumDriver driver) {
         settingsPage = new SettingsPage(driver);
         currencyDialog = new CurrencyDialog(driver);
         keyEvent = AppiumDriverFactory.getKeyEventByDriverType(driver);
     }
 
     public Currency getCurrentCurrency() {
-        settingsPage.openCurrencySettingsPopup();
+        settingsPage.openCurrencyPopup();
         Currency currency = Currency.getCurrencyBySymbol(currencyDialog.getCheckedCurrencyItem());
         keyEvent.pressBackSeveralTimes(2);
         return currency;
     }
 
-    public void setCurrency(Currency currency){
-        settingsPage.openCurrencySettingsPopup();
+    public void setCurrency(Currency currency) {
+        settingsPage.openCurrencyPopup();
         currencyDialog.selectCurrency(currency.getCurrencySymbol());
-        keyEvent.pressBackSeveralTimes(1);
+        keyEvent.pressBack();
+    }
+
+    public void changeListItemDisplaySettings(ListItemDisplaySettings listItemDisplaySettings) {
+        if (listItemDisplaySettings.getDisplayUnits() != settingsPage.isUnitsItemChecked()) {
+            settingsPage.clickUnits();
+        }
+        if (listItemDisplaySettings.getDisplayPrice() != settingsPage.isPriceItemChecked()) {
+            settingsPage.clickPrice();
+        }
+        if (listItemDisplaySettings.getDisplayComment() != settingsPage.isCommentItemChecked()) {
+            settingsPage.clickComment();
+        }
+    }
+
+    public void backFromSettingsToBuyList(){
+        keyEvent.pressBack();
     }
 }

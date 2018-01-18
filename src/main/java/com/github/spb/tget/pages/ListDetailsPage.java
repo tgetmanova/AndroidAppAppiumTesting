@@ -18,6 +18,9 @@ public class ListDetailsPage extends PageElements {
     @AndroidFindBy(id = "com.slava.buylist:id/editText2")
     private MobileElement newItemPriceTextField;
 
+    @AndroidFindBy(xpath = "//android.widget.TextView[contains(@resource-id,'com.slava.buylist:id/value')]")
+    private MobileElement newItemPriceUnitLabel;
+
     @AndroidFindBy(id = "com.slava.buylist:id/editText3")
     private MobileElement newItemCountTextField;
 
@@ -106,5 +109,9 @@ public class ListDetailsPage extends PageElements {
     public boolean isExpectedCurrencySymbolDisplayed(String currencySymbol) {
         return driver.findElementsByXPath(
                 String.format(newItemCurrencySymbolXPathTemplate, currencySymbol)).size() == 1;
+    }
+
+    public String getPriceUnitText(){
+        return newItemPriceUnitLabel.getText();
     }
 }
