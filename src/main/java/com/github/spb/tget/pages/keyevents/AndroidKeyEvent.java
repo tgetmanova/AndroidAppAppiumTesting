@@ -8,10 +8,18 @@ import io.appium.java_client.android.AndroidKeyCode;
 
 import io.qameta.allure.Step;
 
+import org.openqa.selenium.ScreenOrientation;
+
 public class AndroidKeyEvent extends PageElements implements KeyEvent {
 
     public AndroidKeyEvent(AppiumDriver driver) {
         super(driver);
+    }
+
+    @Override
+    @Step("Getting device orientation")
+    public ScreenOrientation getDeviceScreenOrientation() {
+        return driver.getOrientation();
     }
 
     @Override

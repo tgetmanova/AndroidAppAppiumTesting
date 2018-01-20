@@ -7,10 +7,13 @@ import com.github.spb.tget.managers.SettingsManager;
 import com.github.spb.tget.managers.ListDetailsManager;
 import com.github.spb.tget.managers.ListManager;
 import com.github.spb.tget.managers.MenuManager;
+import com.github.spb.tget.managers.DeviceManager;
 import com.github.spb.tget.utils.RandomUtils;
 
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
+
+import org.openqa.selenium.ScreenOrientation;
 
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
@@ -22,25 +25,27 @@ import org.testng.annotations.Test;
 public class SettingsTest extends BaseTest {
 
     private MenuManager menuManager;
-    private SettingsManager currencyManager;
+    private SettingsManager settingsManager;
     private ListManager listManager;
     private ListDetailsManager listDetailsManager;
+    private DeviceManager deviceManager;
 
     @BeforeMethod
     public void settingsTestInitialize() {
         menuManager = new MenuManager(driver);
-        currencyManager = new SettingsManager(driver);
+        settingsManager = new SettingsManager(driver);
         listManager = new ListManager(driver);
         listDetailsManager = new ListDetailsManager(driver);
+        deviceManager = new DeviceManager(driver);
     }
 
     @Test(description = "After currency is changed, Buy List items should be displayed with updated currency symbol")
     public void currencyCanBeChangedAndAppliedToBuyListItems() {
         menuManager.openSettingsFromBuyListPage();
-        Currency targetCurrency = Currency.getRandomCurrencyExcept(currencyManager.getCurrentCurrency());
+        Currency targetCurrency = Currency.getRandomCurrencyExcept(settingsManager.getCurrentCurrency());
 
         menuManager.openSettingsFromBuyListPage();
-        currencyManager.setCurrency(targetCurrency);
+        settingsManager.setCurrency(targetCurrency);
 
         listManager.createBuyList(RandomUtils.getRandomAlphanumeric(15));
         listDetailsManager.verifyCurrencyForItemsIsAsExpected(targetCurrency);
@@ -50,8 +55,8 @@ public class SettingsTest extends BaseTest {
     public void changesInListItemDisplaySettingsShouldBeAppliedToListItems() {
         ListItemDisplaySettings expectedDisplaySettings = ListItemDisplaySettings.randomListDisplaySettings();
         menuManager.openSettingsFromBuyListPage();
-        currencyManager.changeListItemDisplaySettings(expectedDisplaySettings);
-        currencyManager.backFromSettingsToBuyList();
+        settingsManager.changeListItemDisplaySettings(expectedDisplaySettings);
+        settingsManager.backFromSettingsToBuyList();
 
         listManager.createBuyList(RandomUtils.getRandomAlphanumeric(20));
         ListItemInfo listItem = RandomUtils.getRandomListItemInfo();
@@ -59,5 +64,13 @@ public class SettingsTest extends BaseTest {
         listDetailsManager.verifyItemIsDisplayedInTheList(listItem.getName());
 
         listDetailsManager.verifyDisplaySettingsAreAppliedCorrectlyForNewItem(listItem, expectedDisplaySettings);
+    }
+
+    @Test(description = "Can change application orientation via Settings")
+    public void canChangeApplicationOrientationInSettings() {
+        menuManager.openSettingsFromBuyListPage();
+        ScreenOrientation initialOrientation = deviceManager.getScreenOrientation();
+        settingsManager.changeOrientation();
+        settingsManager.verifyApplicationScreenOrientatioHasChanged(initialOrientation);
     }
 }
