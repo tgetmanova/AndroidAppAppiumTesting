@@ -18,8 +18,8 @@ public class BaseTest {
 
     @AfterMethod
     public void cleanup() {
-        if (this.driver != null) {
-            this.driver.quit();
+        if (driver != null) {
+            driver.quit();
         }
     }
 }
