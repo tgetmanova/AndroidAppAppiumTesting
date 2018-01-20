@@ -71,6 +71,6 @@ public class SettingsTest extends BaseTest {
         menuManager.openSettingsFromBuyListPage();
         ScreenOrientation initialOrientation = deviceManager.getScreenOrientation();
         settingsManager.changeOrientation();
-        settingsManager.verifyApplicationScreenOrientatioHasChanged(initialOrientation);
+        settingsManager.verifyApplicationScreenOrientationHasChanged(initialOrientation);
     }
 }

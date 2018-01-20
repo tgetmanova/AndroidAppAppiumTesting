@@ -74,7 +74,7 @@ public class SettingsManager {
         }
     }
 
-    public void verifyApplicationScreenOrientatioHasChanged(ScreenOrientation initialOrientation) {
+    public void verifyApplicationScreenOrientationHasChanged(ScreenOrientation initialOrientation) {
         ScreenOrientation currentScreenOrientation = keyEvent.getDeviceScreenOrientation();
         Assertions.assertThat(currentScreenOrientation)
                 .as(String.format("Expected to change orientation from initial %s, but still having %s",
