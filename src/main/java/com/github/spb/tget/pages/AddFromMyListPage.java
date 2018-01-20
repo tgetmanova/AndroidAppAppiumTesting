@@ -18,7 +18,8 @@ public class AddFromMyListPage extends PageElements {
     }
 
     public void clickMyListItemByName(String itemName) {
-        driver.findElement(By.xpath(String.format(myListItemsAvailableForSelectionXPathTemplate, itemName))).click();
+        driverManager.waitForElementPresenceAndClick(
+                By.xpath(String.format(myListItemsAvailableForSelectionXPathTemplate, itemName)));
     }
 
     public void clickOkButton() {

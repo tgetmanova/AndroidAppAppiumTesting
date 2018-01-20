@@ -43,35 +43,35 @@ public class ListDetailsPage extends PageElements {
     }
 
     public boolean isAt(String listTitle) {
-        List elements = driver.findElementsByXPath(
+        List elements = driverManager.getDriver().findElementsByXPath(
                 String.format(listDetailsHeaderXPathTemplate, listTitle));
         return elements.size() == 1;
     }
 
     @Step("Checking whether buy list contains item with name = {0}")
     public boolean hasItemWithName(String name) {
-        List elements = driver.findElementsByXPath(
+        List elements = driverManager.getDriver().findElementsByXPath(
                 String.format(itemNameLabelXPathTemplate, name));
         return elements.size() == 1;
     }
 
     @Step("Checking whether buy list contains item with comment = {0}")
     public boolean hasItemWithComment(String comment) {
-        List elements = driver.findElementsByXPath(
+        List elements = driverManager.getDriver().findElementsByXPath(
                 String.format(itemCommentLabelXPathTemplate, comment));
         return elements.size() == 1;
     }
 
     @Step("Checking whether buy list contains item with amount = {0} in given units {1}")
     public boolean hasItemWithAmount(String amount, String units) {
-        List elements = driver.findElementsByXPath(
+        List elements = driverManager.getDriver().findElementsByXPath(
                 String.format(itemAmountLabelXPathTemplate, amount, units));
         return elements.size() == 1;
     }
 
     @Step("Checking whether buy list contains item with price = {0} in {1} currency")
     public boolean hasItemWithPrice(String price, String units) {
-        List elements = driver.findElementsByXPath(
+        List elements = driverManager.getDriver().findElementsByXPath(
                 String.format(itemPriceLabelXPathTemplate, price, units));
         return elements.size() == 1;
     }
@@ -107,7 +107,7 @@ public class ListDetailsPage extends PageElements {
 
     @Step("Checking whether expected currency symbol {0} is displayed on List Details page")
     public boolean isExpectedCurrencySymbolDisplayed(String currencySymbol) {
-        return driver.findElementsByXPath(
+        return driverManager.getDriver().findElementsByXPath(
                 String.format(newItemCurrencySymbolXPathTemplate, currencySymbol)).size() == 1;
     }
 

@@ -19,13 +19,13 @@ public class AndroidKeyEvent extends PageElements implements KeyEvent {
     @Override
     @Step("Getting device orientation")
     public ScreenOrientation getDeviceScreenOrientation() {
-        return driver.getOrientation();
+        return driverManager.getDriver().getOrientation();
     }
 
     @Override
     @Step("Pressing 'Back' device button")
     public void pressBack() {
-        ((AndroidDriver) driver).pressKeyCode(AndroidKeyCode.BACK);
+        ((AndroidDriver) driverManager.getDriver()).pressKeyCode(AndroidKeyCode.BACK);
     }
 
     @Override

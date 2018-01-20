@@ -66,13 +66,16 @@ public class ListDetailsManager {
     public void verifyDisplaySettingsAreAppliedCorrectlyForNewItem(ListItemInfo listItemInfo, ListItemDisplaySettings expectedDisplaySettings) {
         SoftAssertions assertion = new SoftAssertions();
         assertion.assertThat(listDetailsPage.hasItemWithAmount(String.valueOf(listItemInfo.getAmount()), "pcs."))
-                .as("Display setting is incorrect for Units")
+                .as("Display setting is incorrect for Units. Expected to display Units: " +
+                        expectedDisplaySettings.getDisplayUnits())
                 .isEqualTo(expectedDisplaySettings.getDisplayUnits());
         assertion.assertThat(listDetailsPage.hasItemWithPrice(String.valueOf(listItemInfo.getPrice()), "£"))
-                .as("Display setting is incorrect for Price")
+                .as("Display setting is incorrect for Price. Expected to display Price: " +
+                        expectedDisplaySettings.getDisplayPrice())
                 .isEqualTo(expectedDisplaySettings.getDisplayPrice());
         assertion.assertThat(listDetailsPage.hasItemWithComment(listItemInfo.getComment()))
-                .as("Display setting is incorrect for Comment")
+                .as("Display setting is incorrect for Comment. Expected to display Comment: " +
+                        expectedDisplaySettings.getDisplayComment())
                 .isEqualTo(expectedDisplaySettings.getDisplayComment());
         assertion.assertAll();
     }
