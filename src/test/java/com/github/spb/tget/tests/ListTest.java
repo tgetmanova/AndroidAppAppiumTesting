@@ -58,7 +58,7 @@ public class ListTest extends BaseTest {
         listDetailsManager.verifyItemIsDisplayedInTheListWithAllDetails(listItemInfo);
     }
 
-    @Test
+    @Test(description = "Can add pre-saved item derived from 'My List' to new Buy List")
     public void canAddItemFromMyListToNewBuyList() {
         menuManager.openMyListPageFromBuyListPageMenu();
         ListItemInfo listItemInfo = RandomUtils.getRandomListItemInfo();
