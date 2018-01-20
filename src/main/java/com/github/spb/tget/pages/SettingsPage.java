@@ -60,7 +60,7 @@ public class SettingsPage extends PageElements {
     }
 
     public boolean isCommentItemChecked() {
-        return units.getAttribute("checked").equals("true");
+        return comment.getAttribute("checked").equals("true");
     }
 
     @Step("Clicking 'Price' item from 'Settings'")
@@ -69,6 +69,6 @@ public class SettingsPage extends PageElements {
     }
 
     public boolean isPriceItemChecked() {
-        return units.getAttribute("checked").equals("true");
+        return price.getAttribute("checked").equals("true");
     }
 }
