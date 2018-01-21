@@ -12,6 +12,11 @@ import org.assertj.core.api.SoftAssertions;
 import org.testng.Assert;
 
 public class ListDetailsManager {
+
+    private static final String DEFAULT_AMOUNT_UNITS = "pcs.";
+
+    private static final String DEFAULT_CURRENCY_SYMBOL = "£";
+
     private ListDetailsPage listDetailsPage;
 
     public ListDetailsManager(AppiumDriver driver) {
@@ -46,11 +51,12 @@ public class ListDetailsManager {
                 .as("After adding new item to the list, cannot find buy list item with comment: "
                         + listItemInfo.getComment())
                 .isTrue();
-        assertion.assertThat(listDetailsPage.hasItemWithAmount(String.valueOf(listItemInfo.getAmount()), "pcs."))
+        assertion.assertThat(listDetailsPage.hasItemWithAmount(
+                    String.valueOf(listItemInfo.getAmount()), DEFAULT_AMOUNT_UNITS))
                 .as("After adding new item to the list, cannot find buy list item with amount: "
                         + listItemInfo.getAmount())
                 .isTrue();
-        assertion.assertThat(listDetailsPage.hasItemWithPrice(String.valueOf(listItemInfo.getPrice()), "£"))
+        assertion.assertThat(listDetailsPage.hasItemWithPrice(String.valueOf(listItemInfo.getPrice()), DEFAULT_CURRENCY_SYMBOL))
                 .as("After adding new item to the list, cannot find buy list item with price: "
                         + listItemInfo.getPrice())
                 .isTrue();
@@ -65,11 +71,13 @@ public class ListDetailsManager {
 
     public void verifyDisplaySettingsAreAppliedCorrectlyForNewItem(ListItemInfo listItemInfo, ListItemDisplaySettings expectedDisplaySettings) {
         SoftAssertions assertion = new SoftAssertions();
-        assertion.assertThat(listDetailsPage.hasItemWithAmount(String.valueOf(listItemInfo.getAmount()), "pcs."))
+        assertion.assertThat(listDetailsPage.hasItemWithAmount(
+                    String.valueOf(listItemInfo.getAmount()), DEFAULT_AMOUNT_UNITS))
                 .as("Display setting is incorrect for Units. Expected to display Units: " +
                         expectedDisplaySettings.getDisplayUnits())
                 .isEqualTo(expectedDisplaySettings.getDisplayUnits());
-        assertion.assertThat(listDetailsPage.hasItemWithPrice(String.valueOf(listItemInfo.getPrice()), "£"))
+        assertion.assertThat(listDetailsPage.hasItemWithPrice(
+                    String.valueOf(listItemInfo.getPrice()), DEFAULT_CURRENCY_SYMBOL))
                 .as("Display setting is incorrect for Price. Expected to display Price: " +
                         expectedDisplaySettings.getDisplayPrice())
                 .isEqualTo(expectedDisplaySettings.getDisplayPrice());
