@@ -41,7 +41,7 @@ public class ListTest extends BaseTest {
     @Test(description = "New item's details should be saved correctly in the buy list")
     public void addingItemToNewBuyListShouldSaveItem() {
         listManager.createBuyList(RandomUtils.getRandomAlphanumeric(20));
-        ListItemInfo expectedListItem = RandomUtils.getRandomListItemInfo();
+        ListItemInfo expectedListItem = ListItemInfo.randomListItemInfo();
 
         listDetailsManager.addNewItemToTheList(expectedListItem);
 
@@ -51,7 +51,7 @@ public class ListTest extends BaseTest {
     @Test(description = "Can save new item in My List")
     public void addingItemToMyListShouldSaveItem() {
         menuManager.openMyListPageFromBuyListPageMenu();
-        ListItemInfo listItemInfo = RandomUtils.getRandomListItemInfo();
+        ListItemInfo listItemInfo = ListItemInfo.randomListItemInfo();
 
         listDetailsManager.addNewItemToTheList(listItemInfo);
 
@@ -61,7 +61,7 @@ public class ListTest extends BaseTest {
     @Test(description = "Can add pre-saved item derived from 'My List' to new Buy List")
     public void canAddItemFromMyListToNewBuyList() {
         menuManager.openMyListPageFromBuyListPageMenu();
-        ListItemInfo listItemInfo = RandomUtils.getRandomListItemInfo();
+        ListItemInfo listItemInfo = ListItemInfo.randomListItemInfo();
         listDetailsManager.addNewItemToTheList(listItemInfo);
         listDetailsManager.verifyItemIsDisplayedInTheListWithAllDetails(listItemInfo);
         listManager.backFromMyListToBuyListDetails();

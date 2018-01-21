@@ -59,7 +59,7 @@ public class SettingsTest extends BaseTest {
         settingsManager.backFromSettingsToBuyList();
 
         listManager.createBuyList(RandomUtils.getRandomAlphanumeric(20));
-        ListItemInfo listItem = RandomUtils.getRandomListItemInfo();
+        ListItemInfo listItem = ListItemInfo.randomListItemInfo();
         listDetailsManager.addNewItemToTheList(listItem);
         listDetailsManager.verifyItemIsDisplayedInTheList(listItem.getName());
 

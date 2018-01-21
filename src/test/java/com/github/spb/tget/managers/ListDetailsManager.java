@@ -8,7 +8,9 @@ import com.github.spb.tget.utils.RandomUtils;
 
 import io.appium.java_client.AppiumDriver;
 
+import org.assertj.core.api.Assertions;
 import org.assertj.core.api.SoftAssertions;
+
 import org.testng.Assert;
 
 public class ListDetailsManager {
@@ -52,11 +54,12 @@ public class ListDetailsManager {
                         + listItemInfo.getComment())
                 .isTrue();
         assertion.assertThat(listDetailsPage.hasItemWithAmount(
-                    String.valueOf(listItemInfo.getAmount()), DEFAULT_AMOUNT_UNITS))
+                String.valueOf(listItemInfo.getAmount()), DEFAULT_AMOUNT_UNITS))
                 .as("After adding new item to the list, cannot find buy list item with amount: "
                         + listItemInfo.getAmount())
                 .isTrue();
-        assertion.assertThat(listDetailsPage.hasItemWithPrice(String.valueOf(listItemInfo.getPrice()), DEFAULT_CURRENCY_SYMBOL))
+        assertion.assertThat(listDetailsPage.hasItemWithPrice(
+                String.valueOf(listItemInfo.getPrice()), DEFAULT_CURRENCY_SYMBOL))
                 .as("After adding new item to the list, cannot find buy list item with price: "
                         + listItemInfo.getPrice())
                 .isTrue();
@@ -72,12 +75,12 @@ public class ListDetailsManager {
     public void verifyDisplaySettingsAreAppliedCorrectlyForNewItem(ListItemInfo listItemInfo, ListItemDisplaySettings expectedDisplaySettings) {
         SoftAssertions assertion = new SoftAssertions();
         assertion.assertThat(listDetailsPage.hasItemWithAmount(
-                    String.valueOf(listItemInfo.getAmount()), DEFAULT_AMOUNT_UNITS))
+                String.valueOf(listItemInfo.getAmount()), DEFAULT_AMOUNT_UNITS))
                 .as("Display setting is incorrect for Units. Expected to display Units: " +
                         expectedDisplaySettings.getDisplayUnits())
                 .isEqualTo(expectedDisplaySettings.getDisplayUnits());
         assertion.assertThat(listDetailsPage.hasItemWithPrice(
-                    String.valueOf(listItemInfo.getPrice()), DEFAULT_CURRENCY_SYMBOL))
+                String.valueOf(listItemInfo.getPrice()), DEFAULT_CURRENCY_SYMBOL))
                 .as("Display setting is incorrect for Price. Expected to display Price: " +
                         expectedDisplaySettings.getDisplayPrice())
                 .isEqualTo(expectedDisplaySettings.getDisplayPrice());
@@ -86,5 +89,43 @@ public class ListDetailsManager {
                         expectedDisplaySettings.getDisplayComment())
                 .isEqualTo(expectedDisplaySettings.getDisplayComment());
         assertion.assertAll();
+    }
+
+    public void addSeveralItemsToTheList(int itemsCount) {
+        for (int i = 0; i < itemsCount; i++) {
+            addNewItemToTheList(ListItemInfo.randomWithListItemNamePrefix(String.valueOf(i)));
+        }
+    }
+
+    public String getListItemNameAtTheTopPosition() {
+        return listDetailsPage.getItemNameTextByInstanceNumber(0);
+    }
+
+    private String getListItemNameAtTheVeryLastPosition(int totalItemsCount) {
+        return listDetailsPage.getItemNameTextByInstanceNumber(totalItemsCount - 1);
+    }
+
+    public int getNumberOfListItems() {
+        return listDetailsPage.getItemNamesTextLabels().size();
+    }
+
+    public void markItemAsBoughtAtPosition(int position) {
+        listDetailsPage.clickBasketImageIconByInstanceNumber(position);
+    }
+
+    public void verifyItemWithNameAtTheBottomOfList(String expectedItemName) {
+        String actualItemNameAtTheBottom = getListItemNameAtTheVeryLastPosition(getNumberOfListItems());
+        Assertions.assertThat(actualItemNameAtTheBottom)
+                .as(String.format("Expected to see item with name %s at the bottom of the list, but here was another: %s",
+                        expectedItemName, actualItemNameAtTheBottom))
+                .isEqualTo(expectedItemName);
+    }
+
+    public void verifyItemWithNameAtTheTopOfList(String expectedItemName) {
+        String actualItemNameAtTheTop = getListItemNameAtTheTopPosition();
+        Assertions.assertThat(actualItemNameAtTheTop)
+                .as(String.format("Expected to see item with name %s at the top of the list, but here was another: %s",
+                        expectedItemName, actualItemNameAtTheTop))
+                .isEqualTo(expectedItemName);
     }
 }

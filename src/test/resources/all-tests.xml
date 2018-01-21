@@ -7,11 +7,10 @@
             <class name="com.github.spb.tget.tests.ListTest"/>
         </classes>
     </test>
-    <test name="EditBuyListTests">
-    </test>
     <test name="Manage Settings for Buy List">
         <classes>
             <class name="com.github.spb.tget.tests.SettingsTest"/>
+            <class name="com.github.spb.tget.tests.BoughtListItemTest"/>
         </classes>
     </test>
 </suite>

@@ -18,13 +18,16 @@ public class SettingsPage extends PageElements {
     private MobileElement orientationItem;
 
     @AndroidFindBy(uiAutomator = "new UiSelector().className(\"android.widget.CheckBox\").instance(0)")
-    private MobileElement units;
+    private MobileElement displayUnitsCheckbox;
 
     @AndroidFindBy(uiAutomator = "new UiSelector().className(\"android.widget.CheckBox\").instance(1)")
-    private MobileElement comment;
+    private MobileElement displayCommentsCheckbox;
 
     @AndroidFindBy(uiAutomator = "new UiSelector().className(\"android.widget.CheckBox\").instance(2)")
-    private MobileElement price;
+    private MobileElement displayPriceCheckbox;
+
+    @AndroidFindBy(uiAutomator = "new UiSelector().className(\"android.widget.CheckBox\").instance(4)")
+    private MobileElement moveBoughtItemsToTheBottomCheckbox;
 
     public SettingsPage(AppiumDriver driver) {
         super(driver);
@@ -45,30 +48,39 @@ public class SettingsPage extends PageElements {
         orientationItem.click();
     }
 
-    @Step("Clicking 'Units' item from 'Settings'")
-    public void clickUnits() {
-        units.click();
+    @Step("Checking 'Units' item checkbox from 'Settings'")
+    public void clickUnitsCheckbox() {
+        displayUnitsCheckbox.click();
     }
 
     public boolean isUnitsItemChecked() {
-        return units.getAttribute("checked").equals("true");
+        return displayUnitsCheckbox.getAttribute("checked").equals("true");
     }
 
-    @Step("Clicking 'Comment' item from 'Settings'")
-    public void clickComment() {
-        comment.click();
+    @Step("Checking 'Comment' item checkbox from 'Settings'")
+    public void clickCommentCheckbox() {
+        displayCommentsCheckbox.click();
     }
 
     public boolean isCommentItemChecked() {
-        return comment.getAttribute("checked").equals("true");
+        return displayCommentsCheckbox.getAttribute("checked").equals("true");
     }
 
-    @Step("Clicking 'Price' item from 'Settings'")
-    public void clickPrice() {
-        price.click();
+    @Step("Checking 'Price' item checkbox from 'Settings'")
+    public void clickPriceCheckbox() {
+        displayPriceCheckbox.click();
     }
 
     public boolean isPriceItemChecked() {
-        return price.getAttribute("checked").equals("true");
+        return displayPriceCheckbox.getAttribute("checked").equals("true");
+    }
+
+    public boolean isMoveBoughtItemsToTheBottomOptionSelected() {
+        return moveBoughtItemsToTheBottomCheckbox.getAttribute("checked").equals("true");
+    }
+
+    @Step("Selecting 'Move bought to the end of the list' from 'Settings'")
+    public void checkMoveBoughtItemsToTheBottom() {
+        moveBoughtItemsToTheBottomCheckbox.click();
     }
 }

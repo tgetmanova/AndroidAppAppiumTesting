@@ -43,13 +43,13 @@ public class SettingsManager {
 
     public void changeListItemDisplaySettings(ListItemDisplaySettings listItemDisplaySettings) {
         if (listItemDisplaySettings.getDisplayUnits() != settingsPage.isUnitsItemChecked()) {
-            settingsPage.clickUnits();
+            settingsPage.clickUnitsCheckbox();
         }
         if (listItemDisplaySettings.getDisplayPrice() != settingsPage.isPriceItemChecked()) {
-            settingsPage.clickPrice();
+            settingsPage.clickPriceCheckbox();
         }
         if (listItemDisplaySettings.getDisplayComment() != settingsPage.isCommentItemChecked()) {
-            settingsPage.clickComment();
+            settingsPage.clickCommentCheckbox();
         }
     }
 
@@ -80,5 +80,19 @@ public class SettingsManager {
                 .as(String.format("Expected to change orientation from initial %s, but still having %s",
                         initialOrientation, currentScreenOrientation))
                 .isNotEqualTo(initialOrientation);
+    }
+
+    public void setMoveBoughtItemsToTheBottom() {
+        if (!settingsPage.isMoveBoughtItemsToTheBottomOptionSelected()) {
+            settingsPage.checkMoveBoughtItemsToTheBottom();
+        }
+        keyEvent.pressBack();
+    }
+
+    public void resetMoveBoughtItemsToTheBottom() {
+        if (settingsPage.isMoveBoughtItemsToTheBottomOptionSelected()) {
+            settingsPage.checkMoveBoughtItemsToTheBottom();
+        }
+        keyEvent.pressBack();
     }
 }

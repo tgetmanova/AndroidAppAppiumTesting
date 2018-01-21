@@ -1,6 +1,7 @@
 package com.github.spb.tget.pages;
 
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 
@@ -37,6 +38,14 @@ public class ListDetailsPage extends PageElements {
     private String itemPriceLabelXPathTemplate = "//android.widget.TextView[@text = '%s %s']";
     private String itemAmountLabelXPathTemplate = "//android.widget.TextView[@text = '%s %s']";
     private String itemCommentLabelXPathTemplate = "//android.widget.TextView[@text='%s']";
+
+    private String itemNameLabelsXPathByUiAutomatorTemplate =
+            "new UiSelector().className(\"android.widget.TextView\")" +
+                    ".resourceId(\"com.slava.buylist:id/title\")";
+    private String itemNameLabelXPathByUiAutomatorTemplate = itemNameLabelsXPathByUiAutomatorTemplate + ".instance(%d)";
+    private String itemBasketIconImageXPathByUiAutomatorTemplate =
+            "new UiSelector().className(\"android.widget.ImageView\")" +
+                    ".resourceId(\"com.slava.buylist:id/imageView1\").instance(%d)";
 
     public ListDetailsPage(AppiumDriver driver) {
         super(driver);
@@ -111,7 +120,22 @@ public class ListDetailsPage extends PageElements {
                 String.format(newItemCurrencySymbolXPathTemplate, currencySymbol)).size() == 1;
     }
 
-    public String getPriceUnitText(){
-        return newItemPriceUnitLabel.getText();
+    @Step("Getting full collection of the list items' names")
+    public List<MobileElement> getItemNamesTextLabels() {
+        return driverManager.getDriver().findElements(MobileBy.AndroidUIAutomator(
+                itemNameLabelsXPathByUiAutomatorTemplate));
+    }
+
+    @Step("Getting list item name text by instance number of the text element")
+    public String getItemNameTextByInstanceNumber(int instanceNumber) {
+        return driverManager.getDriver().findElement(MobileBy.AndroidUIAutomator(
+                String.format(itemNameLabelXPathByUiAutomatorTemplate, instanceNumber))).getText();
+    }
+
+    @Step("Clicking Basket image icon against particular buy List item in order to mark it as bought")
+    public void clickBasketImageIconByInstanceNumber(int instanceNumber) {
+        driverManager.getDriver().findElement(MobileBy.AndroidUIAutomator(
+                String.format(itemBasketIconImageXPathByUiAutomatorTemplate, ++instanceNumber)))
+                .click();
     }
 }
