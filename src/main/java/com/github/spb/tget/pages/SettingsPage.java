@@ -8,6 +8,9 @@ import io.qameta.allure.Step;
 
 public class SettingsPage extends PageElements {
 
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Sort list']")
+    private MobileElement sortListItem;
+
     @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Currency']")
     private MobileElement currencyItem;
 
@@ -31,6 +34,11 @@ public class SettingsPage extends PageElements {
 
     public SettingsPage(AppiumDriver driver) {
         super(driver);
+    }
+
+    @Step("Opening 'Sort List' popup from 'Settings'")
+    public void openSortListPopup() {
+        sortListItem.click();
     }
 
     @Step("Opening 'Currency selection' popup from 'Settings'")

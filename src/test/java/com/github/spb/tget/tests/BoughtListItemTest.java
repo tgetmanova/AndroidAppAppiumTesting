@@ -36,6 +36,8 @@ public class BoughtListItemTest extends BaseTest {
     @Test(description = "When 'Move bought items to the bottom' option is selected, " +
             "marking item as bought must cause it to fall to the bottom of the list")
     public void boughtItemShouldBeMovedToTheBottomIfCorrespondingOptionIsSet() {
+        menuManager.openSettingsFromBuyListPage();
+        settingsManager.setListItemsSortingByAlphabet();
         listManager.createBuyList(RandomUtils.getRandomAlphanumeric(20));
         menuManager.openSettingsFromBuyListPage();
         settingsManager.setMoveBoughtItemsToTheBottom();
@@ -50,6 +52,8 @@ public class BoughtListItemTest extends BaseTest {
     @Test(description = "When 'Move bought items to the bottom' option is not selected, " +
             "marking item as bought must not cause any movements of the item within the list")
     public void boughtItemShouldNotBeMovedToTheBottomIfCorrespondingOptionIsNotSet() {
+        menuManager.openSettingsFromBuyListPage();
+        settingsManager.setListItemsSortingByAlphabet();
         listManager.createBuyList(RandomUtils.getRandomAlphanumeric(20));
         menuManager.openSettingsFromBuyListPage();
         settingsManager.resetMoveBoughtItemsToTheBottom();
@@ -65,6 +69,8 @@ public class BoughtListItemTest extends BaseTest {
     @Test(description = "When adding new active list item with name that should be after the bought item due to" +
             " alphabetical sorting, the bought item must still be after all active items including new one")
     public void boughtItemShouldBeKeptAtTheBottomWhenThereIsNewItemThatIsAlphabeticallyAfterTheBoughtItem() {
+        menuManager.openSettingsFromBuyListPage();
+        settingsManager.setListItemsSortingByAlphabet();
         listManager.createBuyList(RandomUtils.getRandomAlphanumeric(20));
         menuManager.openSettingsFromBuyListPage();
         settingsManager.setMoveBoughtItemsToTheBottom();

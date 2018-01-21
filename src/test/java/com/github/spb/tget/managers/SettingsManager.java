@@ -6,6 +6,7 @@ import com.github.spb.tget.pages.SettingsPage;
 import com.github.spb.tget.pages.dialogs.CurrencyDialog;
 import com.github.spb.tget.pages.dialogs.OrientationDialog;
 import com.github.spb.tget.pages.dialogs.OwnCurrencyDialog;
+import com.github.spb.tget.pages.dialogs.SortListPopup;
 import com.github.spb.tget.pages.keyevents.KeyEvent;
 import com.github.spb.tget.utils.AppiumDriverFactory;
 
@@ -20,6 +21,7 @@ public class SettingsManager {
     private SettingsPage settingsPage;
     private CurrencyDialog currencyDialog;
     private OwnCurrencyDialog ownCurrencyDialog;
+    private SortListPopup sortListPopup;
     private KeyEvent keyEvent;
     private OrientationDialog orientationDialog;
 
@@ -29,6 +31,7 @@ public class SettingsManager {
         keyEvent = AppiumDriverFactory.getKeyEventByDriverType(driver);
         orientationDialog = new OrientationDialog(driver);
         ownCurrencyDialog = new OwnCurrencyDialog(driver);
+        sortListPopup = new SortListPopup(driver);
     }
 
     public Currency getCurrentCurrency() {
@@ -92,6 +95,14 @@ public class SettingsManager {
                 .as(String.format("Expected to change orientation from initial %s, but still having %s",
                         initialOrientation, currentScreenOrientation))
                 .isNotEqualTo(initialOrientation);
+    }
+
+    public void setListItemsSortingByAlphabet() {
+        settingsPage.openSortListPopup();
+        if (!sortListPopup.isByAlphabetRadioSelected()) {
+            sortListPopup.checkByAlphabetRadio();
+        }
+        backFromSettingsToBuyList();
     }
 
     public void setMoveBoughtItemsToTheBottom() {
