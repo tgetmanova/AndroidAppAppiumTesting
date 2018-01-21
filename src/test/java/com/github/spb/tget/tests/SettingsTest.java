@@ -48,7 +48,18 @@ public class SettingsTest extends BaseTest {
         settingsManager.setCurrency(targetCurrency);
 
         listManager.createBuyList(RandomUtils.getRandomAlphanumeric(15));
-        listDetailsManager.verifyCurrencyForItemsIsAsExpected(targetCurrency);
+        listDetailsManager.verifyCurrencyForItemsIsAsExpected(targetCurrency.getCurrencySymbol());
+    }
+
+    @Test(description = "When setting some custom currency, " +
+            "Buy List items should be displayed with updated currency symbol")
+    public void customCurrencyCanBeAppliedToBuyListItems() {
+        menuManager.openSettingsFromBuyListPage();
+        String customCurrencySymbol = RandomUtils.getRandomAlphanumeric(5);
+        settingsManager.setCustomCurrency(customCurrencySymbol);
+
+        listManager.createBuyList(RandomUtils.getRandomAlphanumeric(15));
+        listDetailsManager.verifyCurrencyForItemsIsAsExpected(customCurrencySymbol);
     }
 
     @Test(description = "Can customize list item details view (hide/display)")

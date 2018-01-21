@@ -5,6 +5,7 @@ import com.github.spb.tget.data.ListItemDisplaySettings;
 import com.github.spb.tget.pages.SettingsPage;
 import com.github.spb.tget.pages.dialogs.CurrencyDialog;
 import com.github.spb.tget.pages.dialogs.OrientationDialog;
+import com.github.spb.tget.pages.dialogs.OwnCurrencyDialog;
 import com.github.spb.tget.pages.keyevents.KeyEvent;
 import com.github.spb.tget.utils.AppiumDriverFactory;
 
@@ -18,6 +19,7 @@ public class SettingsManager {
 
     private SettingsPage settingsPage;
     private CurrencyDialog currencyDialog;
+    private OwnCurrencyDialog ownCurrencyDialog;
     private KeyEvent keyEvent;
     private OrientationDialog orientationDialog;
 
@@ -26,6 +28,7 @@ public class SettingsManager {
         currencyDialog = new CurrencyDialog(driver);
         keyEvent = AppiumDriverFactory.getKeyEventByDriverType(driver);
         orientationDialog = new OrientationDialog(driver);
+        ownCurrencyDialog = new OwnCurrencyDialog(driver);
     }
 
     public Currency getCurrentCurrency() {
@@ -38,6 +41,15 @@ public class SettingsManager {
     public void setCurrency(Currency currency) {
         settingsPage.openCurrencyPopup();
         currencyDialog.selectCurrency(currency.getCurrencySymbol());
+        keyEvent.pressBack();
+    }
+
+    public void setCustomCurrency(String customCurrencySymbol) {
+        settingsPage.openCurrencyPopup();
+        currencyDialog.selectCurrency("Other");
+        settingsPage.openOwnCurrencyPopup();
+        ownCurrencyDialog.enterTextIntoOwnCurrencyInputField(customCurrencySymbol);
+        ownCurrencyDialog.clickOkButton();
         keyEvent.pressBack();
     }
 

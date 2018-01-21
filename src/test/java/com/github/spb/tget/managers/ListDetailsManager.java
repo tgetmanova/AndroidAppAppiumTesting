@@ -1,6 +1,5 @@
 package com.github.spb.tget.managers;
 
-import com.github.spb.tget.data.Currency;
 import com.github.spb.tget.data.ListItemDisplaySettings;
 import com.github.spb.tget.data.ListItemInfo;
 import com.github.spb.tget.pages.ListDetailsPage;
@@ -67,9 +66,9 @@ public class ListDetailsManager {
         assertion.assertAll();
     }
 
-    public void verifyCurrencyForItemsIsAsExpected(Currency expectedCurrency) {
+    public void verifyCurrencyForItemsIsAsExpected(String expectedCurrencySymbol) {
         listDetailsPage.enterNewItemName(RandomUtils.getRandomAlphanumeric(15));
-        listDetailsPage.isExpectedCurrencySymbolDisplayed(expectedCurrency.getCurrencySymbol());
+        listDetailsPage.isExpectedCurrencySymbolDisplayed(expectedCurrencySymbol);
     }
 
     public void verifyDisplaySettingsAreAppliedCorrectlyForNewItem(ListItemInfo listItemInfo, ListItemDisplaySettings expectedDisplaySettings) {
