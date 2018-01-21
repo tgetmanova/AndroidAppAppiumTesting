@@ -91,7 +91,7 @@ public class ListDetailsManager {
         assertion.assertAll();
     }
 
-    public void addSeveralItemsToTheList(int itemsCount) {
+    public void addSeveralItemsWithNumericPrefixesToTheList(int itemsCount) {
         for (int i = 0; i < itemsCount; i++) {
             addNewItemToTheList(ListItemInfo.randomWithListItemNamePrefix(String.valueOf(i)));
         }
@@ -116,16 +116,16 @@ public class ListDetailsManager {
     public void verifyItemWithNameAtTheBottomOfList(String expectedItemName) {
         String actualItemNameAtTheBottom = getListItemNameAtTheVeryLastPosition(getNumberOfListItems());
         Assertions.assertThat(actualItemNameAtTheBottom)
-                .as(String.format("Expected to see item with name %s at the bottom of the list, but here was another: %s",
-                        expectedItemName, actualItemNameAtTheBottom))
+                .as(String.format("Expected to see item with name %s at the bottom of the list, " +
+                        "but there was another: %s", expectedItemName, actualItemNameAtTheBottom))
                 .isEqualTo(expectedItemName);
     }
 
     public void verifyItemWithNameAtTheTopOfList(String expectedItemName) {
         String actualItemNameAtTheTop = getListItemNameAtTheTopPosition();
         Assertions.assertThat(actualItemNameAtTheTop)
-                .as(String.format("Expected to see item with name %s at the top of the list, but here was another: %s",
-                        expectedItemName, actualItemNameAtTheTop))
+                .as(String.format("Expected to see item with name %s at the top of the list, " +
+                        "but there was another item: %s", expectedItemName, actualItemNameAtTheTop))
                 .isEqualTo(expectedItemName);
     }
 }

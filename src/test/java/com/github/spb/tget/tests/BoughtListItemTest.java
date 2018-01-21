@@ -1,14 +1,23 @@
 package com.github.spb.tget.tests;
 
+import com.github.spb.tget.data.ListItemInfo;
 import com.github.spb.tget.managers.ListDetailsManager;
 import com.github.spb.tget.managers.ListManager;
 import com.github.spb.tget.managers.MenuManager;
 import com.github.spb.tget.managers.SettingsManager;
 import com.github.spb.tget.utils.RandomUtils;
 
+import io.qameta.allure.Feature;
+import io.qameta.allure.Issue;
+import io.qameta.allure.Story;
+
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
+@Listeners(TestListener.class)
+@Feature("Main Buy List page")
+@Story("Can manage bought item behaviour")
 public class BoughtListItemTest extends BaseTest {
 
     private MenuManager menuManager;
@@ -30,7 +39,7 @@ public class BoughtListItemTest extends BaseTest {
         listManager.createBuyList(RandomUtils.getRandomAlphanumeric(20));
         menuManager.openSettingsFromBuyListPage();
         settingsManager.setMoveBoughtItemsToTheBottom();
-        listDetailsManager.addSeveralItemsToTheList(3);
+        listDetailsManager.addSeveralItemsWithNumericPrefixesToTheList(3);
         String itemNameToMarkAsBought = listDetailsManager.getListItemNameAtTheTopPosition();
 
         listDetailsManager.markItemAsBoughtAtPosition(0);
@@ -44,7 +53,7 @@ public class BoughtListItemTest extends BaseTest {
         listManager.createBuyList(RandomUtils.getRandomAlphanumeric(20));
         menuManager.openSettingsFromBuyListPage();
         settingsManager.resetMoveBoughtItemsToTheBottom();
-        listDetailsManager.addSeveralItemsToTheList(3);
+        listDetailsManager.addSeveralItemsWithNumericPrefixesToTheList(3);
         String itemNameToMarkAsBought = listDetailsManager.getListItemNameAtTheTopPosition();
 
         listDetailsManager.markItemAsBoughtAtPosition(0);
@@ -52,9 +61,20 @@ public class BoughtListItemTest extends BaseTest {
         listDetailsManager.verifyItemWithNameAtTheTopOfList(itemNameToMarkAsBought);
     }
 
+    @Issue("Currently new active items can appear after bought ones due to alphabetical ordering")
     @Test(description = "When adding new active list item with name that should be after the bought item due to" +
             " alphabetical sorting, the bought item must still be after all active items including new one")
     public void boughtItemShouldBeKeptAtTheBottomWhenThereIsNewItemThatIsAlphabeticallyAfterTheBoughtItem() {
+        listManager.createBuyList(RandomUtils.getRandomAlphanumeric(20));
+        menuManager.openSettingsFromBuyListPage();
+        settingsManager.setMoveBoughtItemsToTheBottom();
+        listDetailsManager.addSeveralItemsWithNumericPrefixesToTheList(3);
+        String itemNameToMarkAsBought = listDetailsManager.getListItemNameAtTheTopPosition();
+        listDetailsManager.markItemAsBoughtAtPosition(0);
+        listDetailsManager.verifyItemWithNameAtTheBottomOfList(itemNameToMarkAsBought);
 
+        listDetailsManager.addNewItemToTheList(ListItemInfo.randomWithListItemNamePrefix("z"));
+
+        listDetailsManager.verifyItemWithNameAtTheBottomOfList(itemNameToMarkAsBought);
     }
 }
