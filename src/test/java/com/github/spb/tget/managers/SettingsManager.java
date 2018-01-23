@@ -9,6 +9,7 @@ import com.github.spb.tget.pages.dialogs.OwnCurrencyDialog;
 import com.github.spb.tget.pages.dialogs.SortListPopup;
 import com.github.spb.tget.pages.keyevents.KeyEvent;
 import com.github.spb.tget.utils.AppiumDriverFactory;
+import com.github.spb.tget.utils.ExecutionContext;
 
 import io.appium.java_client.AppiumDriver;
 
@@ -90,11 +91,13 @@ public class SettingsManager {
     }
 
     public void verifyApplicationScreenOrientationHasChanged(ScreenOrientation initialOrientation) {
-        ScreenOrientation currentScreenOrientation = keyEvent.getDeviceScreenOrientation();
-        Assertions.assertThat(currentScreenOrientation)
-                .as(String.format("Expected to change orientation from initial %s, but still having %s",
-                        initialOrientation, currentScreenOrientation))
-                .isNotEqualTo(initialOrientation);
+        ExecutionContext.executeForSuccess(() -> {
+            ScreenOrientation currentScreenOrientation = keyEvent.getDeviceScreenOrientation();
+            Assertions.assertThat(currentScreenOrientation)
+                    .as(String.format("Expected to change orientation from initial %s, but still having %s",
+                            initialOrientation, currentScreenOrientation))
+                    .isNotEqualTo(initialOrientation);
+        });
     }
 
     public void setListItemsSortingByAlphabet() {
