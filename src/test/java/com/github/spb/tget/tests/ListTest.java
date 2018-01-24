@@ -48,6 +48,13 @@ public class ListTest extends BaseTest {
         listDetailsManager.verifyItemIsDisplayedInTheListWithAllDetails(expectedListItem);
     }
 
+    @Test(description = "New item's details should be saved correctly in the buy list")
+    public void canSelectCategory() {
+        listManager.createBuyList(RandomUtils.getRandomAlphanumeric(20));
+
+        listDetailsManager.createItemWithCategory("Grocery");
+    }
+
     @Test(description = "Can save new item in My List")
     public void addingItemToMyListShouldSaveItem() {
         menuManager.openMyListPageFromBuyListPageMenu();

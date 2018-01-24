@@ -3,6 +3,7 @@ package com.github.spb.tget.managers;
 import com.github.spb.tget.data.ListItemDisplaySettings;
 import com.github.spb.tget.data.ListItemInfo;
 import com.github.spb.tget.pages.ListDetailsPage;
+import com.github.spb.tget.pages.dialogs.SelectCategoryPopup;
 import com.github.spb.tget.utils.RandomUtils;
 
 import io.appium.java_client.AppiumDriver;
@@ -15,13 +16,14 @@ import org.testng.Assert;
 public class ListDetailsManager {
 
     private static final String DEFAULT_AMOUNT_UNITS = "pcs.";
-
     private static final String DEFAULT_CURRENCY_SYMBOL = "£";
 
     private ListDetailsPage listDetailsPage;
+    private SelectCategoryPopup selectCategoryPopup;
 
     public ListDetailsManager(AppiumDriver driver) {
         listDetailsPage = new ListDetailsPage(driver);
+        selectCategoryPopup = new SelectCategoryPopup(driver);
     }
 
     public void verifyListDetailsPageOpened(String listTitle) {
@@ -126,5 +128,11 @@ public class ListDetailsManager {
                 .as(String.format("Expected to see item with name %s at the top of the list, " +
                         "but there was another item: %s", expectedItemName, actualItemNameAtTheTop))
                 .isEqualTo(expectedItemName);
+    }
+
+    public void createItemWithCategory(String categoryName) {
+        listDetailsPage.enterNewItemName(RandomUtils.getRandomAlphanumeric(15));
+        listDetailsPage.clickCategoryDropDown();
+        selectCategoryPopup.clickCategoryItemByNameText(categoryName);
     }
 }

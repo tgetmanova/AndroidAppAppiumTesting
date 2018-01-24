@@ -10,6 +10,7 @@ public class ListItemInfo {
     private String comment;
     private double price;
     private double amount;
+    private String category;
 
     public String getName() {
         return name;
@@ -45,6 +46,14 @@ public class ListItemInfo {
     public ListItemInfo withAmount(double amount) {
         this.amount = amount;
         return this;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void withCategory(String category) {
+        this.category = category;
     }
 
     public static ListItemInfo randomListItemInfo() {

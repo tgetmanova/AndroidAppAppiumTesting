@@ -28,6 +28,9 @@ public class ListDetailsPage extends PageElements {
     @AndroidFindBy(id = "com.slava.buylist:id/editText4")
     private MobileElement newItemCommentTextField;
 
+    @AndroidFindBy(id = "com.slava.buylist:id/spinner2")
+    private MobileElement newItemCategoryDropDown;
+
     @AndroidFindBy(id = "com.slava.buylist:id/button2")
     private MobileElement addItemButton;
 
@@ -109,6 +112,12 @@ public class ListDetailsPage extends PageElements {
         return this;
     }
 
+    @Step("Clicking 'Category' drop-down")
+    public ListDetailsPage clickCategoryDropDown() {
+        newItemCategoryDropDown.click();
+        return this;
+    }
+
     @Step("Clicking 'Add item' button")
     public void clickAddItemButton() {
         addItemButton.click();
@@ -121,7 +130,7 @@ public class ListDetailsPage extends PageElements {
     }
 
     @Step("Getting full collection of the list items' names")
-    public List<MobileElement> getItemNamesTextLabels() {
+    public List getItemNamesTextLabels() {
         return driverManager.getDriver().findElements(MobileBy.AndroidUIAutomator(
                 itemNameLabelsXPathByUiAutomatorTemplate));
     }
