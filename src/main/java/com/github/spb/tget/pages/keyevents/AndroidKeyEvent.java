@@ -10,6 +10,8 @@ import io.qameta.allure.Step;
 
 import org.openqa.selenium.ScreenOrientation;
 
+import static com.github.spb.tget.utils.DriverUtils.saveScreenshotAsPng;
+
 public class AndroidKeyEvent extends PageElements implements KeyEvent {
 
     public AndroidKeyEvent(AppiumDriver driver) {
@@ -33,6 +35,7 @@ public class AndroidKeyEvent extends PageElements implements KeyEvent {
         int current = 0;
         while (current++ < howManyTimes) {
             pressBack();
+            saveScreenshotAsPng(driverManager.getDriver());
         }
     }
 

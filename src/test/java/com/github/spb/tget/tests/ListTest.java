@@ -1,5 +1,6 @@
 package com.github.spb.tget.tests;
 
+import com.github.spb.tget.data.Category;
 import com.github.spb.tget.data.ListItemInfo;
 import com.github.spb.tget.managers.ListDetailsManager;
 import com.github.spb.tget.managers.ListManager;
@@ -52,7 +53,7 @@ public class ListTest extends BaseTest {
     public void canSelectCategory() {
         listManager.createBuyList(RandomUtils.getRandomAlphanumeric(20));
 
-        listDetailsManager.createItemWithCategory("Grocery");
+        listDetailsManager.createItemWithCategory(Category.random().getName());
     }
 
     @Test(description = "Can save new item in My List")
