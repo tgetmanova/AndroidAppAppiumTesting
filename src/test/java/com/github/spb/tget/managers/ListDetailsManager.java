@@ -130,9 +130,10 @@ public class ListDetailsManager {
                 .isEqualTo(expectedItemName);
     }
 
-    public void createItemWithCategory(String categoryName) {
-        listDetailsPage.enterNewItemName(RandomUtils.getRandomAlphanumeric(15));
-        listDetailsPage.clickCategoryDropDown();
-        selectCategoryPopup.clickCategoryItemByNameText(categoryName);
+    public void createItemWithCategory(ListItemInfo listItemInfo) {
+        listDetailsPage.enterNewItemName(listItemInfo.getName())
+                .clickCategoryDropDown();
+        selectCategoryPopup.clickCategoryItemByNameText(listItemInfo.getCategory().getName());
+        listDetailsPage.clickAddItemButton();
     }
 }

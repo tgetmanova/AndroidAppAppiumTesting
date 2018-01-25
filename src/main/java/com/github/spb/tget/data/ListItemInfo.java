@@ -10,7 +10,7 @@ public class ListItemInfo {
     private String comment;
     private double price;
     private double amount;
-    private String category;
+    private Category category;
 
     public String getName() {
         return name;
@@ -48,12 +48,13 @@ public class ListItemInfo {
         return this;
     }
 
-    public String getCategory() {
+    public Category getCategory() {
         return category;
     }
 
-    public void withCategory(String category) {
+    public ListItemInfo withCategory(Category category) {
         this.category = category;
+        return this;
     }
 
     public static ListItemInfo randomListItemInfo() {
@@ -61,7 +62,8 @@ public class ListItemInfo {
                 .withName(RandomStringUtils.randomAlphanumeric(25))
                 .withPrice(RandomUtils.getRandomDouble(1, 10000))
                 .withAmount(RandomUtils.getRandomDouble(1, 100))
-                .withComment(RandomStringUtils.randomAlphanumeric(25));
+                .withComment(RandomStringUtils.randomAlphanumeric(25))
+                .withCategory(Category.random());
     }
 
     public static ListItemInfo randomWithListItemNamePrefix(String prefix) {

@@ -19,14 +19,14 @@ public class SelectCategoryPopup extends PageElements {
     }
 
     public void clickCategoryItemByNameText(String categoryName) {
-        MobileElement targetCategory = categoryTextItems.stream()
+        MobileElement targetCategoryItem = categoryTextItems.stream()
                 .filter(i -> i.getText().equals(categoryName))
                 .findFirst()
                 .orElse(null);
-        if (targetCategory == null) {
-            MobileElement elementToScrollTo = (MobileElement) driverManager.getDriver().findElement(MobileBy.AndroidUIAutomator(
+        if (targetCategoryItem == null) {
+            targetCategoryItem = (MobileElement) driverManager.getDriver().findElement(MobileBy.AndroidUIAutomator(
                     String.format("new UiScrollable(new UiSelector()).scrollIntoView(text(\"%s\"));", categoryName)));
-            elementToScrollTo.click();
         }
+        targetCategoryItem.click();
     }
 }
