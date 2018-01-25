@@ -7,6 +7,8 @@ import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 
+import io.qameta.allure.Step;
+
 import java.util.List;
 
 public class SelectCategoryPopup extends PageElements {
@@ -18,6 +20,7 @@ public class SelectCategoryPopup extends PageElements {
         super(driver);
     }
 
+    @Step("Clicking category {0} in selection popup")
     public void clickCategoryItemByNameText(String categoryName) {
         MobileElement targetCategoryItem = categoryTextItems.stream()
                 .filter(i -> i.getText().equals(categoryName))
