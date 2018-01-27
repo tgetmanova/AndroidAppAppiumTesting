@@ -13,6 +13,8 @@ import org.assertj.core.api.SoftAssertions;
 
 import org.testng.Assert;
 
+import java.util.List;
+
 public class ListDetailsManager {
 
     private static final String DEFAULT_AMOUNT_UNITS = "pcs.";
@@ -135,5 +137,16 @@ public class ListDetailsManager {
                 .clickCategoryDropDown();
         selectCategoryPopup.clickCategoryItemByNameText(listItemInfo.getCategory().getName());
         listDetailsPage.clickAddItemButton();
+    }
+
+    public void verifyCategoriesAreAvailableForItem(List<String> categoriesNames) {
+        listDetailsPage.enterNewItemName(RandomUtils.getRandomAlphanumeric(15))
+                .clickCategoryDropDown();
+        SoftAssertions assertions = new SoftAssertions();
+        categoriesNames.forEach(categoryName ->
+                assertions.assertThat(selectCategoryPopup.isCategoryPresent(categoryName))
+                        .as("Category cannot be found among all available categories: " + categoryName)
+                        .isTrue());
+        assertions.assertAll();
     }
 }

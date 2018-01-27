@@ -11,13 +11,13 @@ import java.util.List;
 
 public class EditCategoriesPage extends PageElements {
 
-    @AndroidFindBy(xpath = "//android.widget.Button[@text='ADD NEW'")
+    @AndroidFindBy(xpath = "//android.widget.Button[@text='ADD NEW']")
     private MobileElement addNewCategoryButton;
 
     @AndroidFindBy(className = "android.widget.TextView")
     private List<MobileElement> categoryTextItems;
 
-    public EditCategoriesPage(AppiumDriver<org.openqa.selenium.WebElement> driver) {
+    public EditCategoriesPage(AppiumDriver driver) {
         super(driver);
     }
 
@@ -33,5 +33,10 @@ public class EditCategoriesPage extends PageElements {
                 .stream()
                 .findAny()
                 .orElseThrow(() -> new RuntimeException("Cannot find category in the list: " + categoryName));
+    }
+
+    @Step("Clicking 'Add new category button'")
+    public void clickAddNewButton() {
+        addNewCategoryButton.click();
     }
 }

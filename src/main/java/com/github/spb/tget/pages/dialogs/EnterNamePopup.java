@@ -13,10 +13,10 @@ public class EnterNamePopup extends PageElements {
     @AndroidFindBy(className = "android.widget.EditText")
     private MobileElement enterNameTextField;
 
-    @AndroidFindBy(xpath = "//android.widget.Button[@text='OK'")
+    @AndroidFindBy(xpath = "//android.widget.Button[@text='OK']")
     private MobileElement okButton;
 
-    @AndroidFindBy(xpath = "//android.widget.Button[@text='NO'")
+    @AndroidFindBy(xpath = "//android.widget.Button[@text='NO']")
     private MobileElement noButton;
 
     public EnterNamePopup(AppiumDriver driver) {
@@ -24,16 +24,17 @@ public class EnterNamePopup extends PageElements {
     }
 
     @Step("Submitting text into name text field")
-    public void enterNameIntoTextField(String text) {
+    public EnterNamePopup enterNameIntoTextField(String text) {
         enterNameTextField.setValue(text);
+        return this;
     }
 
-    @Step("Clicking OK button")
+    @Step("Clicking 'OK' button")
     public void clickOkButton() {
         okButton.click();
     }
 
-    @Step("Clicking OK button")
+    @Step("Clicking 'NO'  button")
     public void clickNoButton() {
         noButton.click();
     }

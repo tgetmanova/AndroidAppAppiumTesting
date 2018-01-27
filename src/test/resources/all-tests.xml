@@ -5,11 +5,12 @@
     <test name="Create Buy List Tests">
         <classes>
             <class name="com.github.spb.tget.tests.ListTest"/>
+            <class name="com.github.spb.tget.tests.CategoryTest"/>
         </classes>
     </test>
     <test name="Manage Settings for Buy List">
         <classes>
-            <class name="com.github.spb.tget.tests.SettingsTest"/>
+            <class name="com.github.spb.tget.tests.ApplicationSettingsTest"/>
             <class name="com.github.spb.tget.tests.BoughtListItemTest"/>
         </classes>
     </test>

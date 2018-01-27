@@ -21,8 +21,8 @@ import org.testng.annotations.Test;
 
 @Listeners(TestListener.class)
 @Feature("Settings menu of Buy List")
-@Story("Can manage settings for Buy List")
-public class SettingsTest extends BaseTest {
+@Story("Can manage general application settings for Buy List application")
+public class ApplicationSettingsTest extends BaseTest {
 
     private MenuManager menuManager;
     private SettingsManager settingsManager;

@@ -1,10 +1,13 @@
 package com.github.spb.tget.pages;
 
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 
 import io.qameta.allure.Step;
+
+import org.openqa.selenium.By;
 
 public class SettingsPage extends PageElements {
 
@@ -19,6 +22,9 @@ public class SettingsPage extends PageElements {
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Orientation']")
     private MobileElement orientationItem;
+
+    private By categoriesItemLocator = MobileBy.AndroidUIAutomator(
+            "new UiScrollable(new UiSelector()).scrollIntoView(text(\"Categories List\"));");
 
     @AndroidFindBy(uiAutomator = "new UiSelector().className(\"android.widget.CheckBox\").instance(0)")
     private MobileElement displayUnitsCheckbox;
@@ -54,6 +60,10 @@ public class SettingsPage extends PageElements {
     @Step("Opening 'Orientation selection' popup from 'Settings'")
     public void openOrientationPopup() {
         orientationItem.click();
+    }
+    @Step("Opening 'Edit Categories' page from 'Settings'")
+    public void openEditCategoriesPopup() {
+        driverManager.getDriver().findElement(categoriesItemLocator).click();
     }
 
     @Step("Checking 'Units' item checkbox from 'Settings'")

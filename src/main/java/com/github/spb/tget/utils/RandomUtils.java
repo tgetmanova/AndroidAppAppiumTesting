@@ -2,7 +2,9 @@ package com.github.spb.tget.utils;
 
 import org.apache.commons.lang3.RandomStringUtils;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Random;
 
 public class RandomUtils {
@@ -25,5 +27,14 @@ public class RandomUtils {
 
     public static Boolean getRandomBoolean() {
         return random.nextBoolean();
+    }
+
+    public static List<String> getListOfRandomAlphanumerics(int count) {
+        List<String> strings = new ArrayList<>(count);
+        int i = 0;
+        while (i++ < count) {
+            strings.add(getRandomAlphanumeric(20));
+        }
+        return strings;
     }
 }
