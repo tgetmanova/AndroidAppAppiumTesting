@@ -13,6 +13,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
+import java.util.Collections;
 import java.util.List;
 
 @Listeners(TestListener.class)
@@ -33,10 +34,10 @@ public class CategoryTest extends BaseTest {
         menuManager = new MenuManager(driver);
     }
 
-    @Test(description = "Can add new custom category for Buy List items via Settings " +
+    @Test(description = "Can add new custom categories for Buy List items via Settings " +
             "and assign these new categories to items")
     public void canAddCustomCategoriesForListItems() {
-        menuManager.openSettingsFromBuyListPage();
+        menuManager.openSettingsFromMenu();
         categoriesManager.openEditCategoriesPageFromSettings();
 
         List<String> categoriesToAdd = RandomUtils.getListOfRandomAlphanumerics(5);
@@ -45,5 +46,19 @@ public class CategoryTest extends BaseTest {
 
         listManager.createBuyList(RandomUtils.getRandomAlphanumeric(15));
         listDetailsManager.verifyCategoriesAreAvailableForItem(categoriesToAdd);
+    }
+
+    @Test(description = "Can add new custom category while already adding new item to the list " +
+            "(moving to Settings right from List Details page) and assign these new category to items")
+    public void canAddCustomCategoriesForListItemsInPlace() {
+        listManager.createBuyList(RandomUtils.getRandomAlphanumeric(15));
+        menuManager.openSettingsFromMenu();
+        categoriesManager.openEditCategoriesPageFromSettings();
+
+        String customCategory = RandomUtils.getRandomAlphanumeric(15);
+        categoriesManager.addNewItemCategory(customCategory);
+        categoriesManager.backFromEditCategoriesPageToBuyListPage();
+
+        listDetailsManager.verifyCategoriesAreAvailableForItem(Collections.singletonList(customCategory));
     }
 }

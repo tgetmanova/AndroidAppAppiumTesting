@@ -20,8 +20,17 @@ public class CommonMenu extends PageElements {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Add from my list']")
     private MobileElement addFromMyListMenuItem;
 
+    @AndroidFindBy(id = "com.slava.buylist:id/button1")
+    private MobileElement menuButton;
+
     public CommonMenu(AppiumDriver driver) {
         super(driver);
+    }
+
+    @Step("Expanding top menu items")
+    public CommonMenu clickMenuButton() {
+        menuButton.click();
+        return this;
     }
 
     @Step("Selecting 'Settings' option in Menu")

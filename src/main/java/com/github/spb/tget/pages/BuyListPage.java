@@ -8,9 +8,6 @@ import io.qameta.allure.Step;
 
 public class BuyListPage extends PageElements {
 
-    @AndroidFindBy(id = "com.slava.buylist:id/button1")
-    private MobileElement menuButton;
-
     @AndroidFindBy(xpath = "//android.widget.EditText[@text='New list...']")
     private MobileElement newListTitleTextField;
 
@@ -30,10 +27,5 @@ public class BuyListPage extends PageElements {
     @Step("Clicking add new list button")
     public void pressAddNewListButton() {
         addNewListButton.click();
-    }
-
-    @Step("Expanding top menu items")
-    public void clickMenuButton() {
-        menuButton.click();
     }
 }

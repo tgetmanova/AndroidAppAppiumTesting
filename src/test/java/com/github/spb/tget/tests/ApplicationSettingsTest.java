@@ -41,10 +41,10 @@ public class ApplicationSettingsTest extends BaseTest {
 
     @Test(description = "After currency is changed, Buy List items should be displayed with updated currency symbol")
     public void currencyCanBeChangedAndAppliedToBuyListItems() {
-        menuManager.openSettingsFromBuyListPage();
+        menuManager.openSettingsFromMenu();
         Currency targetCurrency = Currency.getRandomCurrencyExcept(settingsManager.getCurrentCurrency());
 
-        menuManager.openSettingsFromBuyListPage();
+        menuManager.openSettingsFromMenu();
         settingsManager.setCurrency(targetCurrency);
 
         listManager.createBuyList(RandomUtils.getRandomAlphanumeric(15));
@@ -54,7 +54,7 @@ public class ApplicationSettingsTest extends BaseTest {
     @Test(description = "When setting some custom currency, " +
             "Buy List items should be displayed with updated currency symbol")
     public void customCurrencyCanBeAppliedToBuyListItems() {
-        menuManager.openSettingsFromBuyListPage();
+        menuManager.openSettingsFromMenu();
         String customCurrencySymbol = RandomUtils.getRandomAlphanumeric(5);
         settingsManager.setCustomCurrency(customCurrencySymbol);
 
@@ -65,7 +65,7 @@ public class ApplicationSettingsTest extends BaseTest {
     @Test(description = "Can customize list item details view (hide/display)")
     public void changesInListItemDisplaySettingsShouldBeAppliedToListItems() {
         ListItemDisplaySettings expectedDisplaySettings = ListItemDisplaySettings.randomListDisplaySettings();
-        menuManager.openSettingsFromBuyListPage();
+        menuManager.openSettingsFromMenu();
         settingsManager.changeListItemDisplaySettings(expectedDisplaySettings);
         settingsManager.backFromSettingsToBuyList();
 
@@ -79,7 +79,7 @@ public class ApplicationSettingsTest extends BaseTest {
 
     @Test(description = "Can change application orientation via Settings")
     public void canChangeApplicationOrientationInSettings() {
-        menuManager.openSettingsFromBuyListPage();
+        menuManager.openSettingsFromMenu();
         ScreenOrientation initialOrientation = deviceManager.getScreenOrientation();
         settingsManager.changeOrientation();
         settingsManager.verifyApplicationScreenOrientationHasChanged(initialOrientation);
