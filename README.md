@@ -31,4 +31,6 @@ creating run configurations *TestNG* and specifying test suites/methods manually
 `mvn clean test site`  
 Allure report in HTML format will be output into `target\site\allure-maven-plugin` directory
 
+![alt text](https://raw.githubusercontent.com/tgetmanova/AndroidAppAppiumTesting/master/.github/Maven_Allure_Idea_Config.png)
+
 
