@@ -149,4 +149,16 @@ public class ListDetailsManager {
                         .isTrue());
         assertions.assertAll();
     }
+
+    public void verifyOrderOfCategory(String categoryName, int expectedPosition) {
+        listDetailsPage.enterNewItemName(RandomUtils.getRandomAlphanumeric(15))
+                .clickCategoryDropDown();
+
+        // Need offset +1 since there is also default 'No category' item at the top of the popup
+        String actualCategoryAtPosition = selectCategoryPopup.getCategoryNameAtPosition(expectedPosition + 1);
+        Assertions.assertThat(actualCategoryAtPosition)
+                .as(String.format("Expected to see [%s] category at [%d] position, but actually see [%s]",
+                        categoryName, expectedPosition, actualCategoryAtPosition))
+                .isEqualTo(categoryName);
+    }
 }

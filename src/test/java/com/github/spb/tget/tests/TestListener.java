@@ -3,7 +3,7 @@ package com.github.spb.tget.tests;
 import org.testng.ITestResult;
 import org.testng.TestListenerAdapter;
 
-import static com.github.spb.tget.utils.DriverUtils.saveScreenshotAsPng;
+import static com.github.spb.tget.utils.ReportUtils.saveScreenshotAsPng;
 
 public class TestListener extends TestListenerAdapter {
 

@@ -7,6 +7,7 @@ import com.github.spb.tget.managers.MenuManager;
 import com.github.spb.tget.utils.RandomUtils;
 
 import io.qameta.allure.Feature;
+import io.qameta.allure.Issue;
 import io.qameta.allure.Story;
 
 import org.testng.annotations.BeforeMethod;
@@ -50,6 +51,8 @@ public class CategoryTest extends BaseTest {
 
     @Test(description = "Can add new custom category while already adding new item to the list " +
             "(moving to Settings right from List Details page) and assign these new category to items")
+    @Issue("When adding new categories right from List Details page while adding new item to the list, " +
+            "newly created category is not yet available for selection")
     public void canAddCustomCategoriesForListItemsInPlace() {
         listManager.createBuyList(RandomUtils.getRandomAlphanumeric(15));
         menuManager.openSettingsFromMenu();
@@ -60,5 +63,30 @@ public class CategoryTest extends BaseTest {
         categoriesManager.backFromEditCategoriesPageToBuyListPage();
 
         listDetailsManager.verifyCategoriesAreAvailableForItem(Collections.singletonList(customCategory));
+    }
+
+    @Test(description = "Can change order of categories from 'Settings' by drag and drop")
+    public void canChangeCategoriesOrder() {
+        menuManager.openSettingsFromMenu();
+        categoriesManager.openEditCategoriesPageFromSettings();
+
+        int categoryToMoveBoundPosition = getCategoryToMoveMaxPosition();
+        int from = RandomUtils.getRandomInt(0, categoryToMoveBoundPosition);
+        int after = RandomUtils.getRandomInt(from + 1, categoryToMoveBoundPosition * 2);
+
+        String categoryNameToMove = categoriesManager.getCategoryNameAtPosition(from);
+
+        categoriesManager.shiftCategories(from, after);
+
+        categoriesManager.backFromEditCategoriesPageToBuyListPage();
+        listManager.createBuyList(RandomUtils.getRandomAlphanumeric(15));
+        int targetPos = (after - from) > 2 ? after + 1 : after;
+        listDetailsManager.verifyOrderOfCategory(categoryNameToMove, targetPos);
+    }
+
+    private int getCategoryToMoveMaxPosition() {
+        int totalVisibleCategoriesCount = categoriesManager.getVisibleCategoriesListToReOrder();
+
+        return (int) Math.floor(totalVisibleCategoriesCount / 3);
     }
 }

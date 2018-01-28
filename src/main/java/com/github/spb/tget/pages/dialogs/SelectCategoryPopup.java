@@ -1,6 +1,7 @@
 package com.github.spb.tget.pages.dialogs;
 
 import com.github.spb.tget.pages.PageElements;
+import com.github.spb.tget.utils.ReportUtils;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileBy;
@@ -15,6 +16,8 @@ public class SelectCategoryPopup extends PageElements {
 
     @AndroidFindBy(className = "android.widget.CheckedTextView")
     private List<MobileElement> categoryTextItems;
+
+    private String categoryTextItemTemplate = "new UiSelector().resourceId(\"android:id/text1\").instance(%d)";
 
     public SelectCategoryPopup(AppiumDriver driver) {
         super(driver);
@@ -33,6 +36,13 @@ public class SelectCategoryPopup extends PageElements {
     public boolean isCategoryPresent(String categoryName) {
         MobileElement targetCategoryItem = tryFindScrollableCategoryItemByNameOrNull(categoryName);
         return targetCategoryItem != null;
+    }
+
+    @Step("Getting category by position number")
+    public String getCategoryNameAtPosition(int position) {
+        ReportUtils.saveScreenshotAsPng(driverManager.getDriver());
+        return driverManager.getDriver().findElement(MobileBy.AndroidUIAutomator(
+                String.format(categoryTextItemTemplate, position))).getText();
     }
 
     private MobileElement tryFindScrollableCategoryItemByNameOrNull(String categoryName) {

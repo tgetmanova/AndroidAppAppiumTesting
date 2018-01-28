@@ -10,7 +10,7 @@ import io.qameta.allure.Step;
 
 import org.openqa.selenium.ScreenOrientation;
 
-import static com.github.spb.tget.utils.DriverUtils.saveScreenshotAsPng;
+import static com.github.spb.tget.utils.ReportUtils.saveScreenshotAsPng;
 
 public class AndroidKeyEvent extends PageElements implements KeyEvent {
 

@@ -35,4 +35,22 @@ public class CategoriesManager {
     public void openEditCategoriesPageFromSettings() {
         settingsPage.openEditCategoriesPopup();
     }
+
+    public int getVisibleCategoriesListToReOrder() {
+        int totalVisibleCategoriesCount = editCategoriesPage.getVisibleCategories().size();
+        if (totalVisibleCategoriesCount < 3) {
+            throw new AssertionError("Precondition failed: cannot setup test" +
+                    " data as we don't have enough categories");
+        }
+        return totalVisibleCategoriesCount;
+
+    }
+
+    public String getCategoryNameAtPosition(int position) {
+        return editCategoriesPage.getCategoryNameTextAtPosition(position);
+    }
+
+    public void shiftCategories(int from, int after) {
+        editCategoriesPage.dragAndDropElement(from, after);
+    }
 }
