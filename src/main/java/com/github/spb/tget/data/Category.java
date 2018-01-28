@@ -7,7 +7,7 @@ import java.util.Arrays;
 public enum Category {
     GROCERY("Grocery"),
     DAIRY("Dairy produce"),
-    PETS("Pets products"),
+    PETS("Pet products"),
     ACCESS_GROCERY("Accessories Grocery"),
     CHILD("Child products"),
     MEDIC("Medications"),
