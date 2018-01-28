@@ -12,7 +12,7 @@ public enum Category {
     CHILD("Child products"),
     MEDIC("Medications"),
     STATIONERY("Stationery"),
-    COSMETIC("Cosmetic, hygiene"),
+    COSMETIC("Cosmetics, hygiene"),
     SPORT("Sporting goods, games"),
     ACCESS("Accessories"),
     CLOTH("Clothing, footwear"),
