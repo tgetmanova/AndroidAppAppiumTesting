@@ -35,7 +35,8 @@ public class SettingsPage extends PageElements {
     @AndroidFindBy(uiAutomator = "new UiSelector().className(\"android.widget.CheckBox\").instance(2)")
     private MobileElement displayPriceCheckbox;
 
-    @AndroidFindBy(uiAutomator = "new UiSelector().className(\"android.widget.CheckBox\").instance(4)")
+    @AndroidFindBy(uiAutomator = "new UiScrollable(new UiSelector()).scrollIntoView(" +
+            "new UiSelector().className(\"android.widget.CheckBox\").instance(4));")
     private MobileElement moveBoughtItemsToTheBottomCheckbox;
 
     public SettingsPage(AppiumDriver driver) {
