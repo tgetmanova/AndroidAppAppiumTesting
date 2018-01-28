@@ -1,5 +1,6 @@
 package com.github.spb.tget.tests;
 
+import com.github.spb.tget.data.CategoryReOrderInfo;
 import com.github.spb.tget.managers.CategoriesManager;
 import com.github.spb.tget.managers.ListDetailsManager;
 import com.github.spb.tget.managers.ListManager;
@@ -69,24 +70,14 @@ public class CategoryTest extends BaseTest {
     public void canChangeCategoriesOrder() {
         menuManager.openSettingsFromMenu();
         categoriesManager.openEditCategoriesPageFromSettings();
+        CategoryReOrderInfo reOrderInfo = new CategoryReOrderInfo(
+                categoriesManager.getVisibleCategoriesListToReOrder());
+        String categoryNameToMove = categoriesManager.getCategoryNameAtPosition(reOrderInfo.getFromPosition());
 
-        int categoryToMoveBoundPosition = getCategoryToMoveMaxPosition();
-        int from = RandomUtils.getRandomInt(0, categoryToMoveBoundPosition);
-        int after = RandomUtils.getRandomInt(from + 1, categoryToMoveBoundPosition * 2);
-
-        String categoryNameToMove = categoriesManager.getCategoryNameAtPosition(from);
-
-        categoriesManager.shiftCategories(from, after);
-
+        categoriesManager.shiftCategories(reOrderInfo.getFromPosition(), reOrderInfo.getAfterPosition());
         categoriesManager.backFromEditCategoriesPageToBuyListPage();
+
         listManager.createBuyList(RandomUtils.getRandomAlphanumeric(15));
-        int targetPos = (after - from) > 2 ? after + 1 : after;
-        listDetailsManager.verifyOrderOfCategory(categoryNameToMove, targetPos);
-    }
-
-    private int getCategoryToMoveMaxPosition() {
-        int totalVisibleCategoriesCount = categoriesManager.getVisibleCategoriesListToReOrder();
-
-        return (int) Math.floor(totalVisibleCategoriesCount / 3);
+        listDetailsManager.verifyOrderOfCategory(categoryNameToMove, reOrderInfo.getExpectedPositionAfterReordering());
     }
 }

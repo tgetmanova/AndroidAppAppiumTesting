@@ -37,12 +37,7 @@ public class CategoriesManager {
     }
 
     public int getVisibleCategoriesListToReOrder() {
-        int totalVisibleCategoriesCount = editCategoriesPage.getVisibleCategories().size();
-        if (totalVisibleCategoriesCount < 3) {
-            throw new AssertionError("Precondition failed: cannot setup test" +
-                    " data as we don't have enough categories");
-        }
-        return totalVisibleCategoriesCount;
+        return editCategoriesPage.getVisibleCategories().size();
 
     }
 
