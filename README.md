@@ -34,3 +34,8 @@ Allure report in HTML format will be output into `target\site\allure-maven-plugi
 ![alt text](https://raw.githubusercontent.com/tgetmanova/AndroidAppAppiumTesting/master/.github/Maven_Allure_Idea_Config.png)
 
 
+At the time this project was being developed, the following Android version usage statistic presented:
+
+![alt text](https://raw.githubusercontent.com/tgetmanova/AndroidAppAppiumTesting/master/.github/Android_versions.PNG)
+
+Taking into consideration given statistic tests have been validated for the most popular 6 and 7 versions + the latest 8 for perspective
