@@ -44,18 +44,30 @@ Project consists of the following main parts:
 `RandomUtils` - random data generator  
 `DriverManager` encapsulates driver with waiter logic and exposes driver instance; `ExecutionContext` for managing execution retry logic; `DataContextUtils` for application data management 
 - *Pages*: page objects for application. All pages extend `PageElements` base class and are being instantiated passing driver instance to base constructor which initializes elements
-Page object can contain the following fields to expose to higher level of abstraction:
--- MobileElement;
--- MobileBy locator;
--- Template for location strategy (String type)
-AppiumDriver instance is injected into all Pages' constructors
-This instance is being passed into page objects from the *Managers* layer
-*Managers* stand between test scenarios and page objects: they compose steps to interact with page objects from tests
-*Tests* classes extend BaseTest and inherited driver instance to operate on.
+Page object can contain the following fields to expose to higher level of abstraction:  
+  - MobileElement;  
+  - MobileBy locator;  
+  - Template for location strategy (String type)  
+AppiumDriver instance is injected into all Pages' constructors  
+This instance is being passed into page objects from the *Managers* layer  
+- *Managers* stand between test scenarios and page objects: they compose steps to interact with page objects from tests  
+- *Tests* classes extend BaseTest and inherited driver instance to operate on.  
 
 
 At the time this project was being developed, the following Android version usage statistic presented:
 
-![alt text](https://raw.githubusercontent.com/tgetmanova/AndroidAppAppiumTesting/master/.github/Android_versions.PNG)
+![alt text](.github/Android_versions.PNG)
 
-Taking into consideration given statistic tests have been validated for the most popular 6 and 7 versions + the latest 8 for perspective
+Taking into consideration given statistic tests have been validated for the most popular 6 and 7 versions + the latest 8 for perspective  
+
+ ![alt text](https://raw.githubusercontent.com/tgetmanova/AndroidAppAppiumTesting/master/.github/Android Emulators.png)  
+
+ ## **Reports**
+ 
+ Allure report overview looks like:
+ 
+ ![alt text](https://raw.githubusercontent.com/tgetmanova/AndroidAppAppiumTesting/master/.github/Allure Report_Overview.png)  
+ 
+ Test cases (group by TestNG suites and named as in suite XML file) can be view here:
+ 
+ ![alt text](https://raw.githubusercontent.com/tgetmanova/AndroidAppAppiumTesting/master/.github/ 	Allure_Report_xUnit_Overview.png) 
