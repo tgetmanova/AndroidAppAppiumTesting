@@ -60,14 +60,35 @@ At the time this project was being developed, the following Android version usag
 
 Taking into consideration given statistic tests have been validated for the most popular 6 and 7 versions + the latest 8 for perspective  
 
- ![alt text](https://raw.githubusercontent.com/tgetmanova/AndroidAppAppiumTesting/master/.github/Android Emulators.png)  
+ ![alt text](https://raw.githubusercontent.com/tgetmanova/AndroidAppAppiumTesting/master/.github/Android%20Emulators.png)  
 
  ## **Reports**
  
- Allure report overview looks like:
+ Allure report overview looks like:  
  
- ![alt text](https://raw.githubusercontent.com/tgetmanova/AndroidAppAppiumTesting/master/.github/Allure Report_Overview.png)  
+ ![alt text](https://raw.githubusercontent.com/tgetmanova/AndroidAppAppiumTesting/master/.github/Allure%20Report_Overview.png "Report Overview")  
  
- Test cases (group by TestNG suites and named as in suite XML file) can be view here:
+ Test cases (group by TestNG suites and named as in suite XML file) can be viewed here:  
  
- ![alt text](https://raw.githubusercontent.com/tgetmanova/AndroidAppAppiumTesting/master/.github/ 	Allure_Report_xUnit_Overview.png) 
+ ![alt text](https://raw.githubusercontent.com/tgetmanova/AndroidAppAppiumTesting/master/.github/Allure_Report_xUnit_Overview.png "Test cases Overview") 
+ 
+ Group by Features and Stories (derived and resolved fgrom Allure annotations):   
+ 
+  ![alt text](https://raw.githubusercontent.com/tgetmanova/AndroidAppAppiumTesting/master/.github/Allure%20Report_Stories.png "Features and Stories") 
+  
+  Thanks to Step annotation and method's parameters binding, we can see test scenario step-by-step with particular data passed into test step:  
+  
+ ![alt text](https://raw.githubusercontent.com/tgetmanova/AndroidAppAppiumTesting/master/.github/Allure%20Report_simple_steps_params.png "Steps and input data") 
+   
+ Also we can see useful text attachments - this one reflects the list of item before and after drag & drop action:  
+ 
+![alt text](https://raw.githubusercontent.com/tgetmanova/AndroidAppAppiumTesting/master/.github/Allure%20Report_before_drag_drop.png "Before dragged and dropped") 
+![alt text](https://raw.githubusercontent.com/tgetmanova/AndroidAppAppiumTesting/master/.github/Allure%20Report_after_drag_drop.png "After dragged and dropped") 
+  
+We can see failed test by assertion because of existing issue (Allure Issue annotation):  
+![alt text](https://raw.githubusercontent.com/tgetmanova/AndroidAppAppiumTesting/master/.github/Allure Report_Issue_1_Overview.png "Issue with bought items order being reset after adding new item")
+  
+Screenshots for issues captured and attached to the Report:
+![alt text](https://raw.githubusercontent.com/tgetmanova/AndroidAppAppiumTesting/master/.github/Allure%20Report_Issue_1_screenshot.png "One issue screenshot")
+![alt text](https://raw.githubusercontent.com/tgetmanova/AndroidAppAppiumTesting/master/.github/Allure%20Report_Issue_2_screenshot.png "Another issue screenshot")
+
