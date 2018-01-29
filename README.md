@@ -33,7 +33,7 @@ Allure report in HTML format will be output into `target\site\allure-maven-plugi
 
 ![alt text](https://raw.githubusercontent.com/tgetmanova/AndroidAppAppiumTesting/master/.github/Maven_Allure_Idea_Config.png)
 
-##**Test project structure**
+## **Test project structure**
 Project consists of the following main parts:
 - *Data*: custom types for test data composition.   
 `Currency` provides available currency symbols; `Category` reflects existing goods categories;  
@@ -43,6 +43,15 @@ Project consists of the following main parts:
 `ReportUtils` - static methods for Allure reporting attachments  
 `RandomUtils` - random data generator  
 `DriverManager` encapsulates driver with waiter logic and exposes driver instance; `ExecutionContext` for managing execution retry logic; `DataContextUtils` for application data management 
+- *Pages*: page objects for application. All pages extend `PageElements` base class and are being instantiated passing driver instance to base constructor which initializes elements
+Page object can contain the following fields to expose to higher level of abstraction:
+-- MobileElement;
+-- MobileBy locator;
+-- Template for location strategy (String type)
+AppiumDriver instance is injected into all Pages' constructors
+This instance is being passed into page objects from the *Managers* layer
+*Managers* stand between test scenarios and page objects: they compose steps to interact with page objects from tests
+*Tests* classes extend BaseTest and inherited driver instance to operate on.
 
 
 At the time this project was being developed, the following Android version usage statistic presented:
