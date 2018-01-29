@@ -14,7 +14,7 @@ import java.util.List;
 
 public class EditCategoriesPage extends PageElements {
 
-    @AndroidFindBy(xpath = "//android.widget.Button[@text='ADD NEW']")
+    @AndroidFindBy(id = "com.slava.buylist:id/button2")
     private MobileElement addNewCategoryButton;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[@resource-id='com.slava.buylist:id/title']")
