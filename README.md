@@ -53,6 +53,10 @@ This instance is being passed into page objects from the *Managers* layer
 - *Managers* stand between test scenarios and page objects: they compose steps to interact with page objects from tests  
 - *Tests* classes extend BaseTest and inherited driver instance to operate on.  
 
+## **Application under test**  
+
+Application to be tested: *Shopping List*
+It contains general functionality for creating/editing list of goods to be bought, settings for currency and units of products to measure etc
 
 At the time this project was being developed, the following Android version usage statistic presented:
 
@@ -86,7 +90,7 @@ Taking into consideration given statistic tests have been validated for the most
 ![alt text](https://raw.githubusercontent.com/tgetmanova/AndroidAppAppiumTesting/master/.github/Allure%20Report_after_drag_drop.png "After dragged and dropped") 
   
 We can see failed test by assertion because of existing issue (Allure Issue annotation):  
-![alt text](https://raw.githubusercontent.com/tgetmanova/AndroidAppAppiumTesting/master/.github/Allure Report_Issue_1_Overview.png "Issue with bought items order being reset after adding new item")
+![alt text](https://raw.githubusercontent.com/tgetmanova/AndroidAppAppiumTesting/master/.github/Allure%20Report_Issue_1_Overview.png "Issue with bought items order being reset after adding new item")
   
 Screenshots for issues captured and attached to the Report:
 ![alt text](https://raw.githubusercontent.com/tgetmanova/AndroidAppAppiumTesting/master/.github/Allure%20Report_Issue_1_screenshot.png "One issue screenshot")
