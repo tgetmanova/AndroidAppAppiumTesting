@@ -6,7 +6,12 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.util.Properties;
 
-public class DataContextUtils {
+public final class DataContextUtils {
+
+    private DataContextUtils() {
+        throw new IllegalStateException("DataContextUtils class is for static utils only and must not be instantiated");
+    }
+
     public static Properties getAppProperties() {
         Properties appProperties = new Properties();
 
