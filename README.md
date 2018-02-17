@@ -18,9 +18,14 @@ The last one specify some properties extracted from Android driver configuration
 ## **Test run**
 - **Appium Driver type** is configurable via JVM options parameter: `-DdriverType=Android`.  
 This flag is being passed into factory method `getDriverByType()` via Spring IoC configuration.  
-By default, it is being instantiated as "Android".  
-- Start **Appium** server
-- Connect and start **Android device [emulator]** 
+By default, it is being instantiated as "Android".
+There is also setting `-DlaunchApium`: Appium local service will be started automatically if `true`, or
+will try to connect to pre-launched service if `false`
+- Start **Appium** server manually if you pass `-DlaunchApium` as `false`. For automatic launch (if `true`), it is
+required that Appium is installed via NPM
+- `application.properties`: specify **device** you have. It is not need to start **Android device [emulator]**, it
+will be started automatically thanks to *capability* `avd` in driver setup. Note: it is eqired you have ANDROID_HOME
+environmental var defined.
 - Run tests (either single test method/test class or all tests included into  
 `src/test/resources/al-tests.xml`) with right click -> 'Run tests' in IDE or  
 creating run configurations *TestNG* and specifying test suites/methods manually

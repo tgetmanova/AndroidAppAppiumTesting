@@ -8,5 +8,6 @@
           class="com.github.spb.tget.utils.AppiumDriverFactory"
           factory-method="getDriverByType">
         <constructor-arg type="java.lang.String" value="${driverType:Android}"/>
+        <constructor-arg type="java.lang.Boolean" value="${launchAppium:true}"/>
     </bean>
 </beans>
