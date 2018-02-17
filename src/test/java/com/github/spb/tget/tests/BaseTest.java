@@ -28,13 +28,15 @@ public class BaseTest {
 
     @BeforeSuite
     public void startAppiumServer() {
-        if (AppiumDriverFactory.getIsAppiumToBeLaunched()) {
+        if (AppiumDriverFactory.isAppiumAutoLaunch()) {
             AppiumDriverFactory.getAppiumService().start();
         }
     }
 
     @AfterSuite
     public void stopAppiumServer() {
-        AppiumDriverFactory.getAppiumService().stop();
+        if (AppiumDriverFactory.isAppiumAutoLaunch()) {
+            AppiumDriverFactory.getAppiumService().stop();
+        }
     }
 }

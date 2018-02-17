@@ -22,7 +22,7 @@ public class AppiumDriverFactory {
 
     private static AppiumDriverLocalService appiumService;
 
-    public static Boolean getIsAppiumToBeLaunched() {
+    public static Boolean isAppiumAutoLaunch() {
         //TODO need to sync this getter with $launchAppium getDriverByType method parameter
         String launchAppium = System.getProperty("launchAppium");
         if (launchAppium == null) {
