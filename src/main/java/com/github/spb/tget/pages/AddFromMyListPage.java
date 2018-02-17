@@ -8,7 +8,7 @@ import org.openqa.selenium.By;
 
 public class AddFromMyListPage extends PageElements {
 
-    @AndroidFindBy(id = "com.slava.buylist:id/button2")
+    @AndroidFindBy(id = "button2")
     private MobileElement okButton;
 
     private String myListItemsAvailableForSelectionXPathTemplate = "//android.widget.TextView[@text = '%s']";

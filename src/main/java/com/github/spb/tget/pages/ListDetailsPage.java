@@ -13,25 +13,25 @@ public class ListDetailsPage extends PageElements {
 
     private String listDetailsHeaderXPathTemplate = "//android.widget.TextView[@text='%s']";
 
-    @AndroidFindBy(id = "com.slava.buylist:id/editText1")
+    @AndroidFindBy(id = "editText1")
     private MobileElement newItemNameTextField;
 
-    @AndroidFindBy(id = "com.slava.buylist:id/editText2")
+    @AndroidFindBy(id = "editText2")
     private MobileElement newItemPriceTextField;
 
     @AndroidFindBy(xpath = "//android.widget.TextView[contains(@resource-id,'com.slava.buylist:id/value')]")
     private MobileElement newItemPriceUnitLabel;
 
-    @AndroidFindBy(id = "com.slava.buylist:id/editText3")
+    @AndroidFindBy(id = "editText3")
     private MobileElement newItemCountTextField;
 
-    @AndroidFindBy(id = "com.slava.buylist:id/editText4")
+    @AndroidFindBy(id = "editText4")
     private MobileElement newItemCommentTextField;
 
-    @AndroidFindBy(id = "com.slava.buylist:id/spinner2")
+    @AndroidFindBy(id = "spinner2")
     private MobileElement newItemCategoryDropDown;
 
-    @AndroidFindBy(id = "com.slava.buylist:id/button2")
+    @AndroidFindBy(id = "button2")
     private MobileElement addItemButton;
 
     private String newItemCurrencySymbolXPathTemplate

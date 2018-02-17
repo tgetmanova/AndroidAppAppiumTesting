@@ -8,13 +8,13 @@ import io.qameta.allure.Step;
 
 public class MyListPage extends PageElements {
 
-    @AndroidFindBy(id = "com.slava.buylist:id/button1")
+    @AndroidFindBy(id = "button1")
     private MobileElement menuButton;
 
     @AndroidFindBy(xpath = "//android.widget.EditText[@text='New list...']")
     private MobileElement newListTitleTextField;
 
-    @AndroidFindBy(id = "com.slava.buylist:id/button2")
+    @AndroidFindBy(id = "button2")
     private MobileElement addNewListButton;
 
     public MyListPage(AppiumDriver driver) {

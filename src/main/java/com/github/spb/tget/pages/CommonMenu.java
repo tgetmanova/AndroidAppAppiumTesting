@@ -20,7 +20,7 @@ public class CommonMenu extends PageElements {
     @AndroidFindBy(xpath = "//android.widget.TextView[@text = 'Add from my list']")
     private MobileElement addFromMyListMenuItem;
 
-    @AndroidFindBy(id = "com.slava.buylist:id/button1")
+    @AndroidFindBy(id = "button1")
     private MobileElement menuButton;
 
     public CommonMenu(AppiumDriver driver) {

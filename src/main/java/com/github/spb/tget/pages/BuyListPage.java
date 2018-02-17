@@ -11,7 +11,7 @@ public class BuyListPage extends PageElements {
     @AndroidFindBy(xpath = "//android.widget.EditText[@text='New list...']")
     private MobileElement newListTitleTextField;
 
-    @AndroidFindBy(id = "com.slava.buylist:id/button2")
+    @AndroidFindBy(id = "button2")
     private MobileElement addNewListButton;
 
     public BuyListPage(AppiumDriver driver) {

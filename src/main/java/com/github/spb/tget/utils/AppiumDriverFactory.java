@@ -66,6 +66,7 @@ public class AppiumDriverFactory {
         capabilities.setCapability(AndroidMobileCapabilityType.PLATFORM_NAME,
                 properties.getProperty("platform"));
         capabilities.setCapability("app", app.getAbsolutePath());
+        capabilities.setCapability("appPackage", properties.getProperty("packageName"));
         capabilities.setCapability("avd", properties.getProperty("device"));
 
         return launchAppium ? new AndroidDriver(getAppiumService(), capabilities)
