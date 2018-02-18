@@ -113,16 +113,16 @@ Screenshots for issues captured and attached to the Report:
 ## Cloud Testing At SauceLabs (TestObject)  
   
   We can view test results for selected devices:  
-![alt text](https://raw.githubusercontent.com/tgetmanova/AndroidAppAppiumTesting/master/.github/cloud_devices_run.png "Test run on real devices in cloud")  
+![alt text](https://raw.githubusercontent.com/tgetmanova/AndroidAppAppiumTesting/master/.github/cloud_devices_run.PNG "Test run on real devices in cloud")  
   
   Test Results view with Device and Application information:  
-  ![alt text](https://raw.githubusercontent.com/tgetmanova/AndroidAppAppiumTesting/master/.github/cloud_devices_app.png "Test run with app and device details")  
+  ![alt text](https://raw.githubusercontent.com/tgetmanova/AndroidAppAppiumTesting/master/.github/cloud_devices_app.PNG "Test run with app and device details")  
   
   We can view the video recorded for test run - how we were interacting with app on device:  
-  ![alt text](https://raw.githubusercontent.com/tgetmanova/AndroidAppAppiumTesting/master/.github/cloud_devices_video.png "Test run video for real devices in cloud")   
+  ![alt text](https://raw.githubusercontent.com/tgetmanova/AndroidAppAppiumTesting/master/.github/cloud_devices_video.PNG "Test run video for real devices in cloud")   
     
   Requests and Responses to/from SauceLabs API:  
-    ![alt text](https://raw.githubusercontent.com/tgetmanova/AndroidAppAppiumTesting/master/.github/cloud_devices_video.png "Test run details: requests performed and responses")
+    ![alt text](https://raw.githubusercontent.com/tgetmanova/AndroidAppAppiumTesting/master/.github/cloud_devices_requests.PNG "Test run details: requests performed and responses")
   
   Also we can view Device's logs and Appium service logs. E.g. Appium logs:  
-  ![alt text](https://raw.githubusercontent.com/tgetmanova/AndroidAppAppiumTesting/master/.github/cloud_devices_video.png "Test run details: Appium server logs")
+  ![alt text](https://raw.githubusercontent.com/tgetmanova/AndroidAppAppiumTesting/master/.github/cloud_devices_appium_log.PNG "Test run details: Appium server logs")
