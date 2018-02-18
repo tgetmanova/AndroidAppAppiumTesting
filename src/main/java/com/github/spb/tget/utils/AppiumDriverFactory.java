@@ -69,8 +69,35 @@ public class AppiumDriverFactory {
         capabilities.setCapability("appPackage", properties.getProperty("packageName"));
         capabilities.setCapability("avd", properties.getProperty("device"));
 
+        if (Boolean.valueOf(System.getProperty("cloudTesting"))) {
+            return getCloudAndroidDriver();
+        }
         return launchAppium ? new AndroidDriver(getAppiumService(), capabilities)
                 : new AndroidDriver(getAppiumServiceUrl(), capabilities);
+    }
+
+    private static AndroidDriver getCloudAndroidDriver() {
+        Properties properties = DataContextUtils.getAppProperties();
+        String URL = String.format("https://%s:%s@%s",
+                properties.getProperty("sauceLabsLogin"),
+                properties.getProperty("sauceLabsAccessKey"),
+                properties.getProperty("sauceLabsRemoteUrl"));
+
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("platformName", "Android");
+        capabilities.setCapability("deviceName", properties.getProperty("sauceLabsDeviceName"));
+        capabilities.setCapability("app",
+                "http://saucelabs.com/example_files/" + properties.getProperty("appName"));
+        capabilities.setCapability("testobject_api_key", properties.getProperty("sauceLabsAccessKey"));
+        capabilities.setCapability("name", properties.getProperty("testRunName"));
+
+        URL url;
+        try {
+            url = new URL(URL);
+        } catch (MalformedURLException exception) {
+            throw new RuntimeException(exception);
+        }
+        return new AndroidDriver(url, capabilities);
     }
 
     private static URL getAppiumServiceUrl() {
