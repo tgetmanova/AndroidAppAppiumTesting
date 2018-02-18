@@ -20,7 +20,16 @@ The last one specify some properties extracted from Android driver configuration
 This flag is being passed into factory method `getDriverByType()` via Spring IoC configuration.  
 By default, it is being instantiated as "Android".  
 There is also setting `-DlaunchAppium`: Appium local service will be started automatically if `true`, or
-will try to connect to pre-launched service if `false`
+will try to connect to pre-launched service if `false`  
+  
+Besides, you can specify `-DcloudTesting=true` parameter to execute tests in cloud - SauceLabs.  
+To setup cloud test run at SauceLabs, setup the following in `application.properties`:  
+**sauceLabsLogin**  
+**sauceLabsAccessKey**  
+**testRunName** - this will be displayed as test run name in Test Results of SauceLabs (TestObject)  
+**sauceLabsRemoteUrl** - URL to connect to real devices  
+**sauceLabsDeviceName** - real device ID from SauceLabs (TestObject) configuration  
+  
 - Start **Appium** server manually if you pass `-DlaunchAppium` as `false`. For automatic launch (if `true`), it is
 required that Appium is installed via NPM
 - `application.properties`: specify **device** you have. It is not need to start **Android device [emulator]**, it
@@ -29,8 +38,6 @@ environmental var defined.
 - Run tests (either single test method/test class or all tests included into  
 `src/test/resources/all-tests.xml`) with right click -> 'Run tests' in IDE or  
 creating run configurations *TestNG* and specifying test suites/methods manually
-
-
 
 - To run tests with Maven with Allure test report generation:
 `mvn clean test site`  
@@ -103,3 +110,19 @@ Screenshots for issues captured and attached to the Report:
 ![alt text](https://raw.githubusercontent.com/tgetmanova/AndroidAppAppiumTesting/master/.github/Allure%20Report_Issue_1_screenshot.png "One issue screenshot")
 ![alt text](https://raw.githubusercontent.com/tgetmanova/AndroidAppAppiumTesting/master/.github/Allure%20Report_Issue_2_screenshot.png "Another issue screenshot")
 
+## Cloud Testing At SauceLabs (TestObject)  
+  
+  We can view test results for selected devices:  
+![alt text](https://raw.githubusercontent.com/tgetmanova/AndroidAppAppiumTesting/master/.github/cloud_devices_run.png "Test run on real devices in cloud")  
+  
+  Test Results view with Device and Application information:  
+  ![alt text](https://raw.githubusercontent.com/tgetmanova/AndroidAppAppiumTesting/master/.github/cloud_devices_app.png "Test run with app and device details")  
+  
+  We can view the video recorded for test run - how we were interacting with app on device:  
+  ![alt text](https://raw.githubusercontent.com/tgetmanova/AndroidAppAppiumTesting/master/.github/cloud_devices_video.png "Test run video for real devices in cloud")   
+    
+  Requests and Responses to/from SauceLabs API:  
+    ![alt text](https://raw.githubusercontent.com/tgetmanova/AndroidAppAppiumTesting/master/.github/cloud_devices_video.png "Test run details: requests performed and responses")
+  
+  Also we can view Device's logs and Appium service logs. E.g. Appium logs:  
+  ![alt text](https://raw.githubusercontent.com/tgetmanova/AndroidAppAppiumTesting/master/.github/cloud_devices_video.png "Test run details: Appium server logs")
