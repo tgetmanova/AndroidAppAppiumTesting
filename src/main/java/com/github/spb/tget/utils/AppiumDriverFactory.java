@@ -88,6 +88,7 @@ public class AppiumDriverFactory {
         capabilities.setCapability("deviceName", properties.getProperty("sauceLabsDeviceName"));
         capabilities.setCapability("app",
                 "http://saucelabs.com/example_files/" + properties.getProperty("appName"));
+        capabilities.setCapability("appPackage", properties.getProperty("packageName"));
         capabilities.setCapability("testobject_api_key", properties.getProperty("sauceLabsAccessKey"));
         capabilities.setCapability("name", properties.getProperty("testRunName"));
 
